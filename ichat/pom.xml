@@ -7,12 +7,24 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ichat Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>
+			UTF-8
+		</project.build.sourceEncoding>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>2.5.10</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -25,14 +37,14 @@
 				<configuration>
 					<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
 					<scanIntervalSeconds>6</scanIntervalSeconds>
-					<contextPath>/ichat</contextPath>							
-					<webDefaultXml>jetty.xml</webDefaultXml>					
+					<contextPath>/ichat</contextPath>
+					<webDefaultXml>jetty.xml</webDefaultXml>
 					<jettyEnvXml>jetty-env.xml</jettyEnvXml>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>8080</port>
 							<headerBufferSize>80000</headerBufferSize>
-						</connector> 
+						</connector>
 					</connectors>
 					<stopKey>stop</stopKey>
 					<stopPort>8082</stopPort>
@@ -43,7 +55,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-				<encoding>utf-8</encoding>
+					<encoding>utf-8</encoding>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
