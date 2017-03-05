@@ -42,7 +42,8 @@ public class UserServlet extends HttpServlet {
 			String name=request.getParameter("name");
 			String password=request.getParameter("password");
 			PrintWriter pw=response.getWriter();
-			//pw.write("name->"+name+",password->"+password);
+			pw.write("name->"+name+",password->"+password);
+			System.out.println("name->"+name+",password->"+password);
 			request.getRequestDispatcher("welcome.jsp").forward(request, response);				
 			System.out.println("UserServlet,doGet()"+action);
 		}
