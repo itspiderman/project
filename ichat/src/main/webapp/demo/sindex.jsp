@@ -7,6 +7,7 @@
 <title>Hello Servlet</title>
 </head>
 <body>
+<h1>This is servlet demo, submit to UserServlet</h1>
 <p> hello every one!</p>
 <a href="user?action=login_input">login</a>
 </body>
