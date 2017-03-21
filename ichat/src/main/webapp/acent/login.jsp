@@ -4,11 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Struts 2.0 Demo</title>
 </head>
 <body>
-<h1>This is for Servlet Demo</h1>
+<h1>Struts 2.0 Demo</h1> 
 <br/>
-	name:<%=request.getParameter("name")%>
+<form name="loginForm" action="login.action" method="post">
+Name:<input type="text" name="userName"/><br/>
+Password:<input type="password" name="password"/><br/>
+<input type="submit" value="Submit" />
+
+
+</form>
 </body>
 </html>

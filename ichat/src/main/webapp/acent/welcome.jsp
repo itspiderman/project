@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>This is for Servlet Demo</h1>
-<br/>
-	name:<%=request.getParameter("name")%>
+<h1>Welcome to struts 2.0!!</h1>
 </body>
 </html>

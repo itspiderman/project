@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>This is for Servlet Demo</h1>
+<br/>
 	<form action="user?action=login" method="post">
 		Name:<input type="text" name="name" /> Password:<input
 			type="password" name="password" /> <input type="submit" value="登录" />

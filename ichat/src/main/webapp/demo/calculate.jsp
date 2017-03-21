@@ -10,7 +10,8 @@
 <title>Calculate</title>
 </head>
 <body>
-
+<h1>This is JavaBean Demo</h1>
+<br/>
 Result is :
 <%
 try{

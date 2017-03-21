@@ -1,6 +1,6 @@
 package com.demo;
-// Testing url 
-// http://localhost:8080/demo/calculate.jsp
+// This is for JavaBean testing. 
+//URL:  http://localhost:8080/demo/calculate.jsp
 public class Calculator {
 	double first;
 	String operater;
