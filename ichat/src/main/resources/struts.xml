@@ -4,7 +4,11 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" extends="struts-default">
+	
+	
+
+	
 		<action name="login" class="com.acent.LoginAction">
 			<result name="SUCCESS">/index.jsp</result>
 			<result name="WELCOME">/acent/welcome.jsp</result>

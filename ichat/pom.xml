@@ -66,8 +66,10 @@
 					<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
 					<scanIntervalSeconds>6</scanIntervalSeconds>
 					<contextPath>/ichat</contextPath>
+					<defaultsDescriptor>${project.build.directory}/ichat/WEB-INF/webdefault.xml</defaultsDescriptor>
 					<webDefaultXml>jetty.xml</webDefaultXml>
 					<jettyEnvXml>jetty-env.xml</jettyEnvXml>
+					<war>${project.basedir}/target/ichat.war</war>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>8090</port>
