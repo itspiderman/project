@@ -3,10 +3,12 @@ package com.services.pojo;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.services.pojo.fund.Fund;
+
 import junit.framework.TestCase;
 
-public class FundRateTest extends TestCase {
-	FundRate fundRate=new FundRate();
+public class FundTest extends TestCase {
+	Fund fundRate=new Fund();
 	String fundUrl="http://fund.eastmoney.com/001781.html";
 	String fundCode="001781";
 	String fundName="建信现代服务业股票";
@@ -32,11 +34,5 @@ public class FundRateTest extends TestCase {
 	public void testGetFundName() {
 		fundRate.setFundName(fundName);
 		assertEquals("建信现代服务业股票",fundRate.getFundName());
-	}
-
-	@Test
-	public void testGetSteps() {
-		fundRate.setFundUrl(fundUrl);
-		assertEquals("http://fund.eastmoney.com/001781.html",fundRate.getFundUrl());
 	}
 }

@@ -1,13 +1,9 @@
-package com.services.pojo;
+package com.services.pojo.fund;
 
-import java.util.HashMap;
-import java.util.List;
-
-public class FundRate {
+abstract class AFund {
 	private String fundUrl;
 	private String fundCode;
 	private String fundName;
-	private List<HashMap<String,String>> steps;
 	
 	public String getFundUrl() {
 		return fundUrl;
@@ -27,10 +23,4 @@ public class FundRate {
 	public void setFundName(String fundName) {
 		this.fundName = fundName;
 	}
-	public List<HashMap<String, String>> getSteps() {
-		return steps;
-	}
-	public void setSteps(List<HashMap<String, String>> steps) {
-		this.steps = steps;
-	} 
 }
