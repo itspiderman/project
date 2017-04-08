@@ -1,9 +1,11 @@
 package com.services.pojo.fund;
 
 abstract class AFund {
-	private String fundUrl;
+	
 	private String fundCode;
 	private String fundName;
+	private String fundUrl;
+	private char typecode;
 	
 	public String getFundUrl() {
 		return fundUrl;
@@ -23,4 +25,11 @@ abstract class AFund {
 	public void setFundName(String fundName) {
 		this.fundName = fundName;
 	}
+	public char getTypecode() {
+		return typecode;
+	}
+	public void setTypecode(char typecode) {
+		this.typecode = typecode;
+	}
+	
 }

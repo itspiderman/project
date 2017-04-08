@@ -1,5 +1,7 @@
 package com.services.imp;
 
+import com.services.dao.IFundRateStepDao;
+import com.services.dao.imp.FundRateStepDao;
 import com.services.pojo.fund.FundRateStep;
 
 public class FundRateStepService {
@@ -13,5 +15,14 @@ public class FundRateStepService {
 		this.fundRateStep = fundRateStep;
 	}
 	
+	//injection
+	IFundRateStepDao fundRateStepDao;
+	public void setFundRateStepDao(IFundRateStepDao fundRateStepDao) {
+		this.fundRateStepDao = fundRateStepDao;
+	}
+	//Without injection,use construct function
+	FundRateStepService(){
+		fundRateStepDao=new FundRateStepDao();
+	}
 
 }

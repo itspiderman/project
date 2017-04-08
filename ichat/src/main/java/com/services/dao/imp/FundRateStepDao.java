@@ -2,10 +2,10 @@ package com.services.dao.imp;
 
 import java.util.List;
 
-import com.services.dao.IFundRateStep;
+import com.services.dao.IFundRateStepDao;
 import com.services.pojo.fund.FundRateStep;
 
-public class FundRateStepDao implements IFundRateStep {
+public class FundRateStepDao implements IFundRateStepDao {
 	FundRateStep fundRateStep=new FundRateStep();
 
 	public FundRateStep getFundRateStep() {
