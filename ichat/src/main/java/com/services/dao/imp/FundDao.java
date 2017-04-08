@@ -30,16 +30,28 @@ public class FundDao implements IFundDao {
 	@Override
 	public List<Fund> queryFund() {
 		//demo start
-		Fund f1=new Fund();
-		f1.setFundUrl(fundUrl);
-		f1.setFundCode(fundCode);
-		f1.setFundName(fundName);		
+		Fund fd=new Fund();
+		fd.setFundUrl(fundUrl);
+		fd.setFundCode(fundCode);
+		fd.setFundName(fundName);		
 		//demo end		
 		List<Fund> ls=new ArrayList<Fund>();
 		// connect to db to query fund records
-		ls.add(f1);
+		ls.add(fd);
 		return ls;
 	}
+
+	@Override
+	public Fund queryByFundCode(String fundcode) {
+		Fund fd=new Fund();
+		//
+		fd.setFundUrl(fundUrl);
+		fd.setFundCode(fundCode);
+		fd.setFundName(fundName);
+		//
+		return fd;
+	}
+	
 	
 
 }

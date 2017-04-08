@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="fundRateService" class="com.services.imp.FundRateServiceSpring" />
+	<bean id="aFundSelenium" class="com.demo.seleniumtest.biz.AFundSeleniumSpring" abstract="true">
+		<property name="fundRateServiceSpring" ref="fundRateService" />
+	</bean>
+	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium">
+	
+	</bean>
+	
+	
+	<!-- <bean id="loginAction" class="com.action.LoginAction"> <property name="loginService"> 
+		<ref local="loginService" /> </property> </bean> -->
+</beans>
