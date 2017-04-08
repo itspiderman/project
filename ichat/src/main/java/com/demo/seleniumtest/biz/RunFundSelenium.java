@@ -10,7 +10,7 @@ public class RunFundSelenium{
 	}
 	
 	private void runSelenium(){
-		fundSelenium=new FireFoxFundSelenium();
+		fundSelenium=new FireFoxSelenium();
 		System.out.println(fundSelenium.getBrowserName());
 		fundSelenium.genFundRateRpt();
 	}

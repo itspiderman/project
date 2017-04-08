@@ -15,11 +15,11 @@ public class FundSeleniumFactory {
 				if(fundSelenium==null){
 					switch (clsName.toUpperCase()){
 					case FIREFOX_BROWSER_NAME: 
-						return (new FireFoxFundSelenium());			
+						return (new FireFoxSelenium());			
 					case IE_BROWSER_NAME:
-						return (new IexplorerFundSelenium());
+						return (new IexplorerSelenium());
 					case CHROME_BROWSER_NAME:
-						return (new ChromeFundSelenium());
+						return (new ChromeSelenium());
 					default:
 						new Exception("Browser name is not existing! or incorrect");
 					}

@@ -2,9 +2,9 @@ package com.demo.seleniumtest.biz;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class FireFoxFundSelenium extends AFundSelenium  {
+public class FireFoxSelenium extends AFundSelenium  {
 	
-	FireFoxFundSelenium(){
+	FireFoxSelenium(){
 		this.setBrowserName("FireFox");
 		
 		System.setProperty("webdriver.firefox.marionette", "C:\\Program Files\\Mozilla Firefox\\geckodriver.exe");

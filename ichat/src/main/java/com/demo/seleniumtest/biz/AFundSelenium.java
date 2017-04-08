@@ -28,6 +28,11 @@ public abstract class AFundSelenium implements IFundSelenium {
 	public void setFundRateService(FundRateService fundRateService) {
 		this.fundRateService = fundRateService;
 	}
+	//without injection, need use construct method
+	public void initial(){		
+		
+	}
+	
 	
 	@Override
 	public void genFundRateRpt() {

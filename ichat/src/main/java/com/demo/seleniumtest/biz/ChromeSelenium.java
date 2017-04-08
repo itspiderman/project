@@ -1,6 +1,6 @@
 package com.demo.seleniumtest.biz;
 
-public class IexplorerFundSelenium extends AFundSelenium  {
+public class ChromeSelenium extends AFundSelenium {
 
 	@Override
 	public void genFundRateRpt() {
