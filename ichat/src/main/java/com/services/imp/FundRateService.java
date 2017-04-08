@@ -1,4 +1,4 @@
-package com.services;
+package com.services.imp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,10 @@ public class FundRateService {
 	
 	FundRate fundRate;	
 
-	public FundRate getFundRate() {
+	public FundRate getFundRateList() {
 		Fund fund=new Fund();
 		FundRateStep fundRateStep =new FundRateStep();
-		
-				
+						
 		fund=fundDao.getFund();
 		setFundRate(fund);		
 		
@@ -50,12 +49,12 @@ public class FundRateService {
 	public void setFundRateStepDao(FundRateStepDao fundRateStepDao) {
 		this.fundRateStepDao = fundRateStepDao;
 	}
-
+	//Without injection,before call this class's function in biz layer, need call this construct function to instance this class.
 	public FundRateService(){
 		fundDao=new FundDao();
 		fundRateStepDao=new FundRateStepDao();
 		
-		//
+		//pojo
 		fundRate=new FundRate();
 		
 	}

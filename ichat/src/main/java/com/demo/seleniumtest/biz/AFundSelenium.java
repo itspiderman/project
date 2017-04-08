@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 
-import com.services.FundRateService;
-
+import com.services.imp.FundRateService;
 import com.services.pojo.fund.FundRate;
 
 public abstract class AFundSelenium implements IFundSelenium {
@@ -17,27 +16,26 @@ public abstract class AFundSelenium implements IFundSelenium {
 	public void setBrowserName(String browserName) {
 		this.browserName = browserName;
 	}
-
-
-	//injection
-	WebDriver driver;
-	FundRateService fundRateService;
+	//Sub class to set its webdriver as the browser
+	WebDriver driver;	
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
+	//injection
+	FundRateService fundRateService;
 	public void setFundRateService(FundRateService fundRateService) {
 		this.fundRateService = fundRateService;
 	}
-	//without injection, need use construct method
+	//without injection, need call this function in sub class' construct method
 	public void initial(){		
-		
+		fundRateService=new FundRateService();
 	}
 	
 	
 	@Override
 	public void genFundRateRpt() {
-		fundRateService=new FundRateService();		
-		FundRate fundRate=fundRateService.getFundRate();
+		//fundRateService=new FundRateService();		
+		FundRate fundRate=fundRateService.getFundRateList();
 		driver.get(fundRate.getFundUrl());
 		System.out.println("Page title : "+ driver.getTitle());
 		try {

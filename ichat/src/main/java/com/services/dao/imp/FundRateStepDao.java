@@ -25,7 +25,7 @@ public class FundRateStepDao implements IFundRateStep {
 	}
 
 	@Override
-	public List<FundRateStep> fundRateStepQuery() {
+	public List<FundRateStep> queryFundRateStep() {
 		// TODO Auto-generated method stub
 		return null;
 	}
