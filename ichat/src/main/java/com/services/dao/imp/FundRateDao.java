@@ -30,7 +30,7 @@ public class FundRateDao implements IFundRateDao {
 		
 		List<FundRate> frList=new ArrayList<FundRate>();		
 		
-		List<Fund> fList=fundDao.queryFund();
+		List<Fund> fList=fundDao.queryFundList();
 		Iterator<Fund> fit=fList.iterator();
 		while(fit.hasNext()){
 			FundRate fr=new FundRate();

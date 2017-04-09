@@ -5,6 +5,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 public class SpringContextUtils implements ApplicationContextAware {
+	//Multi-thread solution
+	//http://bbs.csdn.net/topics/390615376?page=1
+	//http://littie1987.iteye.com/blog/937877
 	private static ApplicationContext applicationContext;
 
 	@Override

@@ -9,17 +9,21 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	    <property name="fundDao" ref="fundDao" />
 	    <property name="fundRateStepDao" ref="fundRateStepDao" />
 	</bean>	
-	<bean id="fundRateRptDao" class="com.services.dao.imp.FundRateRptDao" />	
+	<bean id="fundRateRptDao" class="com.services.dao.imp.FundRateRptDao" />
+    <bean id="fundService" class="com.services.imp.FundService">
+        <property name="fundDao" ref="fundDao" />
+    </bean>
     <bean id="fundRateService" class="com.services.imp.FundRateServiceSpring">
 		<property name="fundRateDao" ref="fundRateDao" />		
     </bean>
     <bean id="fundRateRptService" class="com.services.imp.FundRateRptService">
 		<property name="fundRateRptDao" ref="fundRateRptDao" />
     </bean>
-    <bean id="fundRateRptServiceThread" class="com.services.imp.FundRateRptServiceThread">
+    <bean id="fundRateRptServiceRunnable" class="com.services.imp.FundRateRptServiceRunnable">
 		<property name="fundRateRptService" ref="fundRateRptService" />
-    </bean>
+    </bean>    
 	<bean id="aFundSelenium" class="com.demo.seleniumtest.biz.AFundSeleniumSpring" abstract="true">
+		<property name="fundService" ref="fundService" />
 		<property name="fundRateService" ref="fundRateService" />
 		<property name="fundRateRptService" ref="fundRateRptService" />
 	</bean>

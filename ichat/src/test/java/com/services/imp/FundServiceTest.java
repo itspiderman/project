@@ -15,7 +15,7 @@ public class FundServiceTest {
 	@Test
 	public void testQueryFundRateList() {
 		Fund fund=new Fund();
-		List<Fund> ls=fs.queryFundRateList();
+		List<Fund> ls=fs.queryFundList();
 		
 		Iterator<Fund> it=ls.iterator();
 		while(it.hasNext()){

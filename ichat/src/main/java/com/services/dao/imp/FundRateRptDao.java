@@ -11,7 +11,7 @@ public class FundRateRptDao implements IFundRateRptDao {
 	@Override
 	public void insertFundRateRpt(FundRateRpt fundRateRpt) {
 		// TODO Auto-generated method stub
-		System.out.println("insert one fundRateRpt");
+		System.out.println("insert one fundRateRpt: "+fundRateRpt.getFundCode());
 
 	}
 

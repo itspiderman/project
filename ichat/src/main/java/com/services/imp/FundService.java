@@ -13,8 +13,8 @@ public class FundService implements IFundService {
 		return fundDao.queryByFundCode(fundCode);		
 	}
 	@Override
-	public List<Fund> queryFundRateList() {
-		return fundDao.queryFund();	
+	public List<Fund> queryFundList() {
+		return fundDao.queryFundList();	
 	}
 	//injection
 	IFundDao fundDao;

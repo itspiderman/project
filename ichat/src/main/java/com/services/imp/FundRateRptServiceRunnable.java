@@ -3,18 +3,19 @@ package com.services.imp;
 import com.services.IFundRateRptService;
 import com.services.pojo.fund.FundRateRpt;
 
-public class FundRateRptServiceThread extends Thread {
-//	public FundRateRptServiceThread(){}
-	
+public class FundRateRptServiceRunnable implements Runnable {
+	/* usage sample:
+	FundRateRptServiceRunnable fundRateRptServiceRunnable=(FundRateRptServiceRunnable)SpringContextUtils.getBean("fundRateRptServiceRunnable");
+	public void insertFundRateRpt(FundRateRpt fdRpt){		
+		fundRateRptServiceRunnable.setFundRateRpt(fdRpt);
+		Thread th=new Thread(fundRateRptServiceRunnable);
+		th.start();		
+	}	
+	 */
 	FundRateRpt fundRateRpt;	
 	public void setFundRateRpt(FundRateRpt fundRateRpt) {
 		this.fundRateRpt = fundRateRpt;
 	}
-	
-//	public FundRateRptServiceThread(FundRateRpt fundRateRpt){
-//		fundRateRptService=new FundRateRptService();
-//		this.fundRateRpt=fundRateRpt;
-//	}
 	@Override
 	public void run(){
 		synRun();

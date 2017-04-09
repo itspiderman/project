@@ -6,5 +6,5 @@ import com.services.pojo.fund.Fund;
 
 public interface IFundService {
 	public Fund queryFundByFundCode(String fundCode);
-	public List<Fund> queryFundRateList();
+	public List<Fund> queryFundList();
 }
