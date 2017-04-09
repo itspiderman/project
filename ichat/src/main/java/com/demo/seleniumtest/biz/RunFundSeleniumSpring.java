@@ -5,25 +5,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class RunFundSeleniumSpring{	
 	
 	public static void main(String[] args){		
-		
 		RunFundSeleniumSpring runFundSelecnium=new RunFundSeleniumSpring();		
-		runFundSelecnium.runSelenium();
-		
+		runFundSelecnium.runSelenium();		
 	}
-	
-	private void runSelenium(){
-		// fundSelenium=new FireFoxSelenium(); //use injection to load class instance
+
+	private void runSelenium(){		
 		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("applicationContext.xml");
-		fundSelenium=(FireFoxSeleniumSpring)context.getBean("fireFoxSelenium");
+		AFundSeleniumSpring fundSelenium=(FireFoxSeleniumSpring)context.getBean("fireFoxSelenium");
 		System.out.println(fundSelenium.getBrowserName());
-		fundSelenium.genFundRateRpt();
+		fundSelenium.insertFundRateRpt();
 		context.close();
-	}
-		
-	
-	//inject
-	AFundSeleniumSpring fundSelenium;
-	public void setFundSelenium(AFundSeleniumSpring fundSelenium) {
-		this.fundSelenium = fundSelenium;
 	}	
 }

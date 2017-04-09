@@ -3,16 +3,14 @@ package com.demo.seleniumtest.biz;
 public class RunFundSelenium{	
 	
 	public static void main(String[] args){		
-		
 		RunFundSelenium runFundSelecnium=new RunFundSelenium();		
-		runFundSelecnium.runSelenium();
-		
+		runFundSelecnium.runSelenium();		
 	}
 	
 	private void runSelenium(){
 		fundSelenium=new FireFoxSelenium();
 		System.out.println(fundSelenium.getBrowserName());
-		fundSelenium.genFundRateRpt();
+		fundSelenium.insertFundRateRpt();
 	}
 	
 	//inject

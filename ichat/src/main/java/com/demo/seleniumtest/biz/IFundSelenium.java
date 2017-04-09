@@ -8,5 +8,5 @@ package com.demo.seleniumtest.biz;
  *
  */
 public interface IFundSelenium {	
-	void genFundRateRpt();
+	void insertFundRateRpt();
 }

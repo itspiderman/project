@@ -33,10 +33,11 @@ public abstract class AFundSelenium implements IFundSelenium {
 	
 	
 	@Override
-	public void genFundRateRpt() {
+	public void insertFundRateRpt() {
 		//fundRateService=new FundRateService();		
 		FundRate fundRate=fundRateService.getFundRateList();
-		driver.get(fundRate.getFundUrl());
+		String fundUrl=fundRate.getFund().getFundUrl();
+		driver.get(fundUrl);
 		System.out.println("Page title : "+ driver.getTitle());
 		try {
 			Thread.sleep(3000);

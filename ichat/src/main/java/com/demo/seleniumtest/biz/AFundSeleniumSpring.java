@@ -4,8 +4,14 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 
-import com.services.imp.FundRateServiceSpring;
+import com.demo.utils.SpringContextUtils;
+import com.services.IFundRateRptService;
+import com.services.IFundRateService;
+import com.services.imp.FundRateRptService;
+import com.services.imp.FundRateRptServiceThread;
+//import com.services.imp.FundRateRptServiceThread;
 import com.services.pojo.fund.FundRate;
+import com.services.pojo.fund.FundRateRpt;
 
 public abstract class AFundSeleniumSpring implements IFundSelenium {
 	
@@ -17,23 +23,17 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 		this.browserName = browserName;
 	}
 	//Sub class to set its webdriver as the browser
-	WebDriver driver;	
+	WebDriver driver;
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-	//injection
-	FundRateServiceSpring fundRateServiceSpring;
-	public void setFundRateServiceSpring(FundRateServiceSpring fundRateServiceSpring) {
-		this.fundRateServiceSpring = fundRateServiceSpring;
-	}
 
-	
-	
 	@Override
-	public void genFundRateRpt() {
-		//FundRateServiceSpring=new FundRateServiceSpring();		
-		FundRate fundRate=fundRateServiceSpring.getFundRateList();
-		driver.get(fundRate.getFundUrl());
+	public void insertFundRateRpt() {			
+		FundRate fundRate=fundRateService.getFundRateByFundCode("001781");
+		String fundURL=fundRate.getFund().getFundUrl();
+		
+		driver.get(fundURL);
 		System.out.println("Page title : "+ driver.getTitle());
 		try {
 			Thread.sleep(3000);
@@ -62,8 +62,45 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 		lst1yRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[7]/h3")).getText();
 		System.out.println("lst1yRate is "+lst1yRate);
 		
+		FundRateRpt frRpt=new FundRateRpt();
+		frRpt.setLst1wRate(lst1wRate);
+		frRpt.setLst1mRate(lst1mRate);
+		frRpt.setLst3mRate(lst3mRate);
+		frRpt.setLst6mRate(lst6mRate);
+		frRpt.setCuryearRate(curyearRate);
+		frRpt.setLst1yRate(lst1yRate);
+		//start a new thread
+		insertFundRateRpt(frRpt);
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//close driver
 		driver.quit();
-
 	}
+	public void insertFundRateRpt(FundRateRpt fdRpt){
+		//fundRateRptServiceTh=new FundRateRptServiceThread(fdRpt);
+		FundRateRptServiceThread fundRateRptServiceTh=(FundRateRptServiceThread)SpringContextUtils.getBean("fundRateRptServiceThread");
+		fundRateRptServiceTh.setFundRateRpt(fdRpt);
+		fundRateRptServiceTh.start();		
+	}
+	
+	
+	//injection
+	IFundRateService fundRateService;
+	IFundRateRptService fundRateRptService;
+	
+	public void setfundRateService(IFundRateService fundRateService) {
+		this.fundRateService = fundRateService;
+	}	
+	public void setFundRateRptService(IFundRateRptService fundRateRptService) {
+		this.fundRateRptService = fundRateRptService;
+	}
+//	public void setFundRateRptServiceTh(FundRateRptServiceThread fundRateRptServiceTh) {
+//		this.fundRateRptServiceTh = fundRateRptServiceTh;
+//	}
+	
 }

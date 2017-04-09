@@ -8,11 +8,13 @@ import com.services.dao.imp.FundDao;
 import com.services.pojo.fund.Fund;
 
 public class FundService implements IFundService {
-
+	@Override
+	public Fund queryFundByFundCode(String fundCode) {
+		return fundDao.queryByFundCode(fundCode);		
+	}
 	@Override
 	public List<Fund> queryFundRateList() {
-		List<Fund> ls=fundDao.queryFund();		
-		return ls;
+		return fundDao.queryFund();	
 	}
 	//injection
 	IFundDao fundDao;
@@ -23,5 +25,4 @@ public class FundService implements IFundService {
 	FundService(){
 		fundDao=new FundDao();
 	}
-
 }

@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-
-    <bean id="fundRateService" class="com.services.imp.FundRateServiceSpring" />
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">	
+	<bean id="springContextUtils" class="com.demo.utils.SpringContextUtils" />
+	<bean id="fundDao" class="com.services.dao.imp.FundDao" />
+	<bean id="fundRateStepDao" class="com.services.dao.imp.FundRateStepDao" />
+	<bean id ="fundRateDao" class="com.services.dao.imp.FundRateDao">
+	    <property name="fundDao" ref="fundDao" />
+	    <property name="fundRateStepDao" ref="fundRateStepDao" />
+	</bean>	
+	<bean id="fundRateRptDao" class="com.services.dao.imp.FundRateRptDao" />	
+    <bean id="fundRateService" class="com.services.imp.FundRateServiceSpring">
+		<property name="fundRateDao" ref="fundRateDao" />		
+    </bean>
+    <bean id="fundRateRptService" class="com.services.imp.FundRateRptService">
+		<property name="fundRateRptDao" ref="fundRateRptDao" />
+    </bean>
+    <bean id="fundRateRptServiceThread" class="com.services.imp.FundRateRptServiceThread">
+		<property name="fundRateRptService" ref="fundRateRptService" />
+    </bean>
 	<bean id="aFundSelenium" class="com.demo.seleniumtest.biz.AFundSeleniumSpring" abstract="true">
-		<property name="fundRateServiceSpring" ref="fundRateService" />
+		<property name="fundRateService" ref="fundRateService" />
+		<property name="fundRateRptService" ref="fundRateRptService" />
 	</bean>
-	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium">
-	
-	</bean>
-	
-	
-	<!-- <bean id="loginAction" class="com.action.LoginAction"> <property name="loginService"> 
-		<ref local="loginService" /> </property> </bean> -->
+	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />	
 </beans>
