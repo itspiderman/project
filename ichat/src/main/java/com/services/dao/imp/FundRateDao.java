@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.services.dao.IFundDao;
+import com.services.dao.IFundReadDao;
 import com.services.dao.IFundRateDao;
 import com.services.dao.IFundRateStepDao;
 import com.services.pojo.fund.Fund;
@@ -16,7 +16,7 @@ public class FundRateDao implements IFundRateDao {
 	@Override
 	public FundRate getFundRateByFundCode(String fundCode) {
 		FundRate fundRate=new FundRate();
-		Fund fund=fundDao.queryByFundCode(fundCode);
+		Fund fund=fundReadDao.queryByFundCode(fundCode);
 		List<FundRateStep> list=fundRateStepDao.queryFundRateStepByFundCode(fund.getFundCode());
 		
 		fundRate.setFund(fund);
@@ -30,7 +30,7 @@ public class FundRateDao implements IFundRateDao {
 		
 		List<FundRate> frList=new ArrayList<FundRate>();		
 		
-		List<Fund> fList=fundDao.queryFundList();
+		List<Fund> fList=fundReadDao.queryFundList();
 		Iterator<Fund> fit=fList.iterator();
 		while(fit.hasNext()){
 			FundRate fr=new FundRate();
@@ -43,17 +43,17 @@ public class FundRateDao implements IFundRateDao {
 	}
 	
 	//injection
-	IFundDao fundDao;
+	IFundReadDao fundReadDao;
 	IFundRateStepDao fundRateStepDao;
-	public void setFundDao(IFundDao fundDao) {
-		this.fundDao = fundDao;
+	public void setFundReadDao(IFundReadDao fundReadDao) {
+		this.fundReadDao = fundReadDao;
 	}
 	public void setFundRateStepDao(IFundRateStepDao fundRateStepDao) {
 		this.fundRateStepDao = fundRateStepDao;
 	}
 	//without injection
 	public FundRateDao(){
-		fundDao=new FundDao();
+		fundReadDao=new FundReadDao();
 		fundRateStepDao=new FundRateStepDao();
 	}
 

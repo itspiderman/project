@@ -3,15 +3,17 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">	
 	<bean id="springContextUtils" class="com.demo.utils.SpringContextUtils" />
-	<bean id="fundDao" class="com.services.dao.imp.FundDao" />
+	<bean id="fundReadDao" class="com.services.dao.imp.FundReadDao" />
+	<bean id="fundWriteDao" class="com.services.dao.imp.FundWriteDao" />
 	<bean id="fundRateStepDao" class="com.services.dao.imp.FundRateStepDao" />
 	<bean id ="fundRateDao" class="com.services.dao.imp.FundRateDao">
-	    <property name="fundDao" ref="fundDao" />
+	    <property name="fundReadDao" ref="fundReadDao" />
 	    <property name="fundRateStepDao" ref="fundRateStepDao" />
 	</bean>	
 	<bean id="fundRateRptDao" class="com.services.dao.imp.FundRateRptDao" />
     <bean id="fundService" class="com.services.imp.FundService">
-        <property name="fundDao" ref="fundDao" />
+        <property name="fundReadDao" ref="fundReadDao" />
+        <property name="fundWriteDao" ref="fundWriteDao" />
     </bean>
     <bean id="fundRateService" class="com.services.imp.FundRateServiceSpring">
 		<property name="fundRateDao" ref="fundRateDao" />		
@@ -27,5 +29,5 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		<property name="fundRateService" ref="fundRateService" />
 		<property name="fundRateRptService" ref="fundRateRptService" />
 	</bean>
-	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />	
+	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />
 </beans>

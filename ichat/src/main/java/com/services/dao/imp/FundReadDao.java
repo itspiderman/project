@@ -3,10 +3,10 @@ package com.services.dao.imp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.services.dao.IFundDao;
+import com.services.dao.IFundReadDao;
 import com.services.pojo.fund.Fund;
 
-public class FundDao implements IFundDao {
+public class FundReadDao implements IFundReadDao {
 	private Fund fund;
 
 	//

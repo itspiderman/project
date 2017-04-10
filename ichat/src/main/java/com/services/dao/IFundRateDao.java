@@ -2,7 +2,6 @@ package com.services.dao;
 
 import java.util.List;
 
-import com.services.pojo.fund.Fund;
 import com.services.pojo.fund.FundRate;
 
 public interface IFundRateDao {

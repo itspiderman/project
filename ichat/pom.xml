@@ -8,8 +8,6 @@
 	<name>ichat Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
-
-
 	<properties>
 		<project.build.sourceEncoding>
 			UTF-8
@@ -95,13 +93,25 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-		
-		<dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.3.7.RELEASE</version>
-    </dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.9.Final</version>
+		</dependency>
+		<!-- install jdbc for maven mvn install:install-file -Dfile=D:\app\Administrator\product\11.2.0\dbhome_1\jdbc\lib\ojdbc6.jar 
+			-DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.1.0 -Dpackaging=jar -->
+		<!-- 添加oracle jdbc driver -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -141,5 +151,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

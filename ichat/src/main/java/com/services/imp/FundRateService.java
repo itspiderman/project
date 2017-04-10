@@ -2,9 +2,9 @@ package com.services.imp;
 
 import java.util.List;
 
-import com.services.dao.IFundDao;
+import com.services.dao.IFundReadDao;
 import com.services.dao.IFundRateStepDao;
-import com.services.dao.imp.FundDao;
+import com.services.dao.imp.FundReadDao;
 import com.services.dao.imp.FundRateStepDao;
 import com.services.pojo.fund.Fund;
 import com.services.pojo.fund.FundRate;
@@ -26,9 +26,9 @@ public class FundRateService {
 	}
 
 	//injection
-	private IFundDao fundDao;
+	private IFundReadDao fundDao;
 	private IFundRateStepDao fundRateStepDao;
-	public void setFundRateDao(IFundDao fundDao) {
+	public void setFundRateDao(IFundReadDao fundDao) {
 		this.fundDao = fundDao;
 	}
 	public void setFundRateStepDao(IFundRateStepDao fundRateStepDao) {
@@ -36,7 +36,7 @@ public class FundRateService {
 	}
 	//Without injection,before call this class's function in biz layer, need call this construct function to instance this class.
 	public FundRateService(){
-		fundDao=new FundDao();
+		fundDao=new FundReadDao();
 		fundRateStepDao=new FundRateStepDao();		
 	}
 }
