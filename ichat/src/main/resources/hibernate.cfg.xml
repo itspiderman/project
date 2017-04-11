@@ -35,7 +35,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="org.hibernate.tutorial.annotations.Event"/>
+        <mapping resource="com/services/pojo/fund/Fund.hbm.xml"/>
 
     </session-factory>
 

@@ -1,23 +1,20 @@
 <?xml version="1.0"?>
-
-<!--
-  ~ Hibernate, Relational Persistence for Idiomatic Java
-  ~
-  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
-  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
-  -->
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
-<hibernate-mapping package="org.hibernate.tutorial.hbm">
-
-    <class name="Event" table="EVENTS">
-        <id name="id" column="EVENT_ID">
-            <generator class="increment"/>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.services.pojo.fund.Fund" table="TFUND">
+        <id name="fundCode" type="java.lang.String">
+            <column name="FUNDCODE" />
+            <generator class="assigned" />
         </id>
-        <property name="date" type="timestamp" column="EVENT_DATE"/>
-        <property name="title"/>
+        <property name="fundName" type="java.lang.String">
+            <column name="FUNDNAME" />
+        </property>
+        <property name="fundUrl" type="java.lang.String">
+            <column name="FUNDURL" />
+        </property>
+        <property name="typecode" type="char">
+            <column name="TYPECODE" />
+        </property>
     </class>
-
 </hibernate-mapping>
