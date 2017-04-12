@@ -3,6 +3,7 @@ package com.demo.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringContextUtils implements ApplicationContextAware {
 	//Multi-thread solution
@@ -18,8 +19,24 @@ public class SpringContextUtils implements ApplicationContextAware {
 	public static ApplicationContext getApplicationContext(){
 		return applicationContext;
 	}
-	public static Object getBean(String beanID) throws BeansException{
+	public static Object getBean(String beanID) throws BeansException{		
 		return applicationContext.getBean(beanID);
 	}
+	
+	//// rewrite
+//	private static ClassPathXmlApplicationContext applicationContext;
+//
+//	@Override
+//	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+//		// TODO Auto-generated method stub
+//		SpringContextUtils.applicationContext=(ClassPathXmlApplicationContext) applicationContext;
+//	}
+//	public static ApplicationContext getApplicationContext(){
+//		return applicationContext;
+//	}
+//	public static Object getBean(String beanID) throws BeansException{
+//		//applicationContext.refresh();
+//		return applicationContext.getBean(beanID);
+//	}
 
 }

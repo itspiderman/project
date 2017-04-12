@@ -26,7 +26,15 @@ public class FundServiceTest {
 		assertEquals("建信现代服务业股票",fund.getFundName());
 		assertEquals("http://fund.eastmoney.com/001781.html",fund.getFundUrl());
 	}
-
-
-
+//	@Test
+//	public void testUploadFund(){
+//		
+//		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("applicationContext.xml");
+//		FundService fundService=(FundService)context.getBean("fundService");
+//		
+//		String xlsFileName="D:\\Life\\fund\\stock1fund.xlsx";
+//		String sheetName="stock1fundtest";
+//		int actualRow=	fundService.uploadFund(xlsFileName, sheetName);
+//		assertEquals(10,actualRow);
+//	}
 }

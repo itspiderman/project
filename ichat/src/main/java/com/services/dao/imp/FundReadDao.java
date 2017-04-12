@@ -20,7 +20,7 @@ public class FundReadDao implements IFundReadDao {
 		fund.setFundUrl(fundUrl);
 		fund.setFundCode(fundCode);
 		fund.setFundName(fundName);
-		fund.setTypecode(fundTypeCode);
+		fund.setFundTypecode(fundTypeCode);
 		return fund;
 	}
 
@@ -37,13 +37,13 @@ public class FundReadDao implements IFundReadDao {
 		fd.setFundUrl(fundUrl);
 		fd.setFundCode(fundCode);
 		fd.setFundName(fundName);
-		fd.setTypecode(fundTypeCode);
+		fd.setFundTypecode(fundTypeCode);
 		//fund2
 		Fund fd2=new Fund();
 		fd2.setFundUrl("http://fund.eastmoney.com/290004.html");
 		fd2.setFundCode("290004");
 		fd2.setFundName("泰信优质生活混合");
-		fd2.setTypecode('2');
+		fd2.setFundTypecode('2');
 		//demo end		
 		List<Fund> ls=new ArrayList<Fund>();
 		// connect to db to query fund records

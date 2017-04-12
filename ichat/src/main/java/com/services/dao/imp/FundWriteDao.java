@@ -15,20 +15,31 @@ public class FundWriteDao implements IFundWriteDao {
 
 	@Override
 	public int insertFund(Fund fund) {
+		
 		SessionFactory sessionFactory = null;
 		Session session=null;
-		final StandardServiceRegistry registry =new StandardServiceRegistryBuilder().configure().build();
+		final StandardServiceRegistry registry =new StandardServiceRegistryBuilder().configure().build();		
 		try{
+			System.out.println("start insert or update fund to DB for "+fund.getFundName());
 			sessionFactory=new MetadataSources(registry).buildMetadata().buildSessionFactory();
 			
 			session=sessionFactory.openSession();
+			/*
+			 org.hibernate.HibernateException: No CurrentSessionContext configured!
+			 at org.hibernate.internal.SessionFactoryImpl.getCurrentSession(SessionFactoryImpl.java:454)
+			 */
+			//session=sessionFactory.getCurrentSession();
+			
 			session.beginTransaction();
-			session.save(fund);
+			//session.save(fund);			
+			session.saveOrUpdate(fund);
 			session.getTransaction().commit();
 			session.close();
-			
+			sessionFactory.close();
+			System.out.println("End insert or update fund to DB for "+fund.getFundName());
 			
 		}catch(Exception e){
+			e.printStackTrace();
 			StandardServiceRegistryBuilder.destroy(registry);
 		}finally{
 			if(session!=null){
@@ -72,7 +83,7 @@ public class FundWriteDao implements IFundWriteDao {
 	}
 
 	@Override
-	public int uploadFund(String fileName) {
+	public int uploadFund(String xlsFileName) {
 		// TODO Auto-generated method stub
 		System.out.println("uploadFund(String fileName)");
 		return 0;

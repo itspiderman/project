@@ -11,4 +11,5 @@ public interface IFundService {
 	//call write dao
 	public int insertFund(Fund fund);
 	public int insertFund(List<Fund> fundList);
+	public int uploadFund(String xlsFileName,String sheetName);
 }

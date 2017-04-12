@@ -15,7 +15,7 @@ public class FundWriteDaoTest {
 		fd2.setFundUrl("http://fund.eastmoney.com/290004.html");
 		fd2.setFundCode("290004");
 		fd2.setFundName("泰信优质生活混合");
-		fd2.setTypecode('2');
+		fd2.setFundTypecode('2');
 		FundWriteDao fundWriteDao=new FundWriteDao();
 		int i=fundWriteDao.insertFund(fd2);
 		assertEquals(1, i);

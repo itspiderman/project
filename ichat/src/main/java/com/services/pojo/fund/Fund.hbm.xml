@@ -13,7 +13,7 @@
         <property name="fundUrl" type="java.lang.String">
             <column name="FUNDURL" />
         </property>
-        <property name="typecode" type="char">
+        <property name="fundTypecode" type="char">
             <column name="TYPECODE" />
         </property>
     </class>

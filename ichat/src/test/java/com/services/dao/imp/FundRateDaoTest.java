@@ -34,7 +34,7 @@ public class FundRateDaoTest {
 		assertEquals("001781",fund.getFundCode());
 		assertEquals("建信现代服务业股票",fund.getFundName());
 		assertEquals("http://fund.eastmoney.com/001781.html",fund.getFundUrl());
-		assertEquals('1',fund.getTypecode());
+		assertEquals('1',fund.getFundTypecode());
 		assertEquals(1, fundRateStep.getSeq());
 	}
 

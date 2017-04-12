@@ -4,7 +4,7 @@ public class Fund{
 	private String fundCode;
 	private String fundName;
 	private String fundUrl;
-	private char typecode;
+	private char fundTypecode;
 	
 	public String getFundUrl() {
 		return fundUrl;
@@ -24,10 +24,11 @@ public class Fund{
 	public void setFundName(String fundName) {
 		this.fundName = fundName;
 	}
-	public char getTypecode() {
-		return typecode;
+	public char getFundTypecode() {
+		return fundTypecode;
 	}
-	public void setTypecode(char typecode) {
-		this.typecode = typecode;
+	public void setFundTypecode(char fundTypecode) {
+		this.fundTypecode = fundTypecode;
 	}
+	
 }

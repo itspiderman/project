@@ -31,8 +31,9 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
+        <!-- Drop and re-create the database schema on startup : create
+        but usually, we setup it as : update, so hibernate will not create table during deployment -->
+        <property name="hbm2ddl.auto">update</property>
 
         <!-- Names the annotated entity class -->
         <mapping resource="com/services/pojo/fund/Fund.hbm.xml"/>
