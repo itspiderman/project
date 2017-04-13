@@ -36,7 +36,7 @@ public class FundWriteDao implements IFundWriteDao {
 			session.getTransaction().commit();
 			session.close();
 			sessionFactory.close();
-			System.out.println("End insert or update fund to DB for "+fund.getFundName());
+			System.out.println("End insert or update fund to DB for "+fund.getFundCode()+"-"+fund.getFundName());
 			
 		}catch(Exception e){
 			e.printStackTrace();

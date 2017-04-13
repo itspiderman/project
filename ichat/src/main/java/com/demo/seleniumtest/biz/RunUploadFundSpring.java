@@ -21,7 +21,7 @@ public class RunUploadFundSpring{
 		FundService fundService=(FundService)context.getBean("fundService");
 		String xlsFileName="D:\\Life\\fund\\stock1fund.xls";
 		String sheetName="stock1fundtest";
-		sheetName="stock1fund";
+		//sheetName="stock1fund";
 		fundService.uploadFund(xlsFileName, sheetName);
 		
 		if(context!=null){
