@@ -1,8 +1,10 @@
 package com.services.imp;
 
+import java.util.Date;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import com.services.IFundService;
 import com.services.dao.IFundReadDao;
@@ -56,6 +58,7 @@ public class FundService implements IFundService {
 		//int columns=0;
 		int rows=0;
 		int row=1;
+		Date sysDate=null;
 		
 		
 		//fundServiceRunnable=(FundServiceRunnable)SpringContextUtils.getBean("fundServiceRunnable");
@@ -67,10 +70,12 @@ public class FundService implements IFundService {
 			while(row<rows){												
 				synchronized(this){
 					Fund fund=new Fund();
+					sysDate=new Date();
 					fund.setFundCode(sheet.getCell(1,row).getContents());
 					fund.setFundName(sheet.getCell(2, row).getContents());
 					fund.setFundUrl(sheet.getCell(3, row).getContents());
 					fund.setFundTypecode(sheet.getCell(4,row).getContents().charAt(0));
+					fund.setCrtDateTime(new Timestamp(sysDate.getTime()));
 					System.out.println("start row: "+row+","+fund.getFundName());
 					insertFundThread(fund);					
 				}

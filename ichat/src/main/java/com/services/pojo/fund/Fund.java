@@ -1,10 +1,13 @@
 package com.services.pojo.fund;
 
+import java.sql.Timestamp;
+
 public class Fund{
 	private String fundCode;
 	private String fundName;
 	private String fundUrl;
 	private char fundTypecode;
+	private Timestamp crtDateTime;
 	
 	public String getFundUrl() {
 		return fundUrl;
@@ -30,5 +33,10 @@ public class Fund{
 	public void setFundTypecode(char fundTypecode) {
 		this.fundTypecode = fundTypecode;
 	}
-	
+	public Timestamp getCrtDateTime() {
+		return crtDateTime;
+	}
+	public void setCrtDateTime(Timestamp crtDateTime) {
+		this.crtDateTime = crtDateTime;
+	}	
 }

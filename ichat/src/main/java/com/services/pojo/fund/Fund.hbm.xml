@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-13 17:12:46 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.services.pojo.fund.Fund" table="TFUND">
         <id name="fundCode" type="java.lang.String">
@@ -14,7 +15,10 @@
             <column name="FUNDURL" />
         </property>
         <property name="fundTypecode" type="char">
-            <column name="TYPECODE" />
+            <column name="FUNDTYPECODE" />
+        </property>
+        <property name="crtDateTime" type="java.sql.Timestamp">
+            <column name="CRTDATETIME" />
         </property>
     </class>
 </hibernate-mapping>

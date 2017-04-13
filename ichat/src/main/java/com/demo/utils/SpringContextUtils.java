@@ -3,7 +3,6 @@ package com.demo.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringContextUtils implements ApplicationContextAware {
 	//Multi-thread solution
