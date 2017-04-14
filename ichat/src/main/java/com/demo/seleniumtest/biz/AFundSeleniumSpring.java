@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 
-import com.demo.utils.SpringContextUtils;
+import com.demo.util.SpringContextUtils;
 import com.services.IFundRateRptService;
 import com.services.IFundRateService;
 import com.services.IFundService;

@@ -6,10 +6,12 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 
+//import com.demo.util.SpringContextUtils;
 import com.services.IFundService;
 import com.services.dao.IFundReadDao;
 import com.services.dao.IFundWriteDao;
 import com.services.dao.imp.FundReadDao;
+//import com.services.dao.imp.FundWriteDao;
 import com.services.pojo.fund.Fund;
 
 import jxl.Sheet;
@@ -60,8 +62,6 @@ public class FundService implements IFundService {
 		int row=1;
 		Date sysDate=null;
 		
-		
-		//fundServiceRunnable=(FundServiceRunnable)SpringContextUtils.getBean("fundServiceRunnable");
 		try {
 			workbook=Workbook.getWorkbook(new File(xlsFileName));
 			sheet=workbook.getSheet(sheetName);
@@ -104,9 +104,9 @@ public class FundService implements IFundService {
 		row--;
 		return row;
 	}
-	
 	public void insertFundThread(Fund fund){
 		FundServiceRunnable fundServiceRunnable=new FundServiceRunnable();
+		fundServiceRunnable.setFundWriteDao(fundWriteDao);
 		fundServiceRunnable.setFund(fund);
 		Thread th=new Thread(fundServiceRunnable);		
 		th.start();	

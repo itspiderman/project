@@ -36,27 +36,29 @@ public class FundReadDao implements IFundReadDao {
 
 	@Override
 	public List<Fund> queryFundList() {
-		//demo start
-		// fund 1
-		Fund fd=new Fund();
-		fd.setFundUrl(fundUrl);
-		fd.setFundCode(fundCode);
-		fd.setFundName(fundName);
-		fd.setFundTypecode(fundTypeCode);
-		fd.setCrtDateTime(crtDateTime);
-		//fund2
-		Fund fd2=new Fund();
-		fd2.setFundUrl("http://fund.eastmoney.com/290004.html");
-		fd2.setFundCode("290004");
-		fd2.setFundName("泰信优质生活混合");
-		fd2.setFundTypecode('2');
-		fd2.setCrtDateTime(crtDateTime);
-		//demo end		
-		List<Fund> ls=new ArrayList<Fund>();
-		// connect to db to query fund records
-		ls.add(fd);
-		ls.add(fd2);
-		return ls;
+//		//demo start
+//		// fund 1
+//		Fund fd=new Fund();
+//		fd.setFundUrl(fundUrl);
+//		fd.setFundCode(fundCode);
+//		fd.setFundName(fundName);
+//		fd.setFundTypecode(fundTypeCode);
+//		fd.setCrtDateTime(crtDateTime);
+//		//fund2
+//		Fund fd2=new Fund();
+//		fd2.setFundUrl("http://fund.eastmoney.com/290004.html");
+//		fd2.setFundCode("290004");
+//		fd2.setFundName("泰信优质生活混合");
+//		fd2.setFundTypecode('2');
+//		fd2.setCrtDateTime(crtDateTime);
+//		//demo end		
+//		List<Fund> ls=new ArrayList<Fund>();
+//		// connect to db to query fund records
+//		ls.add(fd);
+//		ls.add(fd2);
+		
+		
+		return null;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.demo.utils;
+package com.demo.util;
 
 import com.services.imp.FundServiceRunnable;
 

@@ -4,7 +4,7 @@
     xmlns:lang="http://www.springframework.org/schema/lang"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="springContextUtils" class="com.demo.utils.SpringContextUtils" />
+	<bean id="springContextUtils" class="com.demo.util.SpringContextUtils" />
 	<bean id="fundReadDao" class="com.services.dao.imp.FundReadDao" />
 	<bean id="fundWriteDao" class="com.services.dao.imp.FundWriteDao" />
 	<bean id="fundRateStepDao" class="com.services.dao.imp.FundRateStepDao" />
@@ -26,7 +26,9 @@
     <bean id="fundRateRptServiceRunnable" class="com.services.imp.FundRateRptServiceRunnable">
 		<property name="fundRateRptService" ref="fundRateRptService" />
     </bean>
-    <bean id="fundServiceRunnable" class="com.services.imp.FundServiceRunnable" /> 
+    <bean id="fundServiceRunnable" class="com.services.imp.FundServiceRunnable">
+		<property name="fundWriteDao" ref="fundWriteDao"></property>
+    </bean> 
 	<bean id="aFundSelenium" class="com.demo.seleniumtest.biz.AFundSeleniumSpring" abstract="true">
 		<property name="fundService" ref="fundService" />
 		<property name="fundRateService" ref="fundRateService" />
