@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.demo.util.HibernateSessionFactory;
 import com.services.dao.IFundReadDao;
 import com.services.pojo.fund.Fund;
 
@@ -56,9 +60,18 @@ public class FundReadDao implements IFundReadDao {
 //		// connect to db to query fund records
 //		ls.add(fd);
 //		ls.add(fd2);
+		Session session=HibernateSessionFactory.getSessionFactory().openSession();
+		// HQL 大小写敏感
+//		String hql="from Fund order by fundtypecode asc, fundcode asc";
+		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode) order by a.fundTypecode asc, a.fundCode asc";
+		Query query=session.createQuery(hql);
+		List<Fund> fundList=query.list();
+
+		session.close();
+		HibernateSessionFactory.closeSessionFactory();
 		
 		
-		return null;
+		return fundList;
 	}
 
 	@Override

@@ -7,11 +7,9 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 
-import com.demo.util.SpringContextUtils;
 import com.services.IFundRateRptService;
 import com.services.IFundRateService;
 import com.services.IFundService;
-import com.services.imp.FundRateRptServiceRunnable;
 import com.services.pojo.fund.Fund;
 import com.services.pojo.fund.FundRateRpt;
 
@@ -33,6 +31,9 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 	@Override
 	public void insertFundRateRpt() {
 		int thCount=0;
+		int xpathRow;
+		String quartileRanking="\u56db\u5206\u4f4d\u6392\u540d";  //四分位排名
+		String theSixthValue;
 		
 		List<Fund> flist=fundService.queryFundList();
 		Iterator<Fund> fit=flist.iterator();
@@ -45,21 +46,32 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 		String curyearRate;
 		String lst1yRate;	
 		
-		while(fit.hasNext()){
+		while(fit.hasNext()){			
 			fund=(Fund)fit.next();
 			driver.get(fund.getFundUrl());
-			
-			lst1wRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[2]/h3")).getText();
+			theSixthValue=driver.findElement(By.xpath("//table/tbody/tr[6]/td[1]/div")).getText();
+			if(quartileRanking.equals(theSixthValue.trim())){
+				System.out.print("set xpathrow=6, ");
+				xpathRow=6;
+			}else{
+				System.out.print("set xpathrow=7, ");
+				xpathRow=7;
+			}			
+			//
+			System.out.print(fund.getFundCode()+" "+fund.getFundName()+",fundtype "+fund.getFundTypecode()+" , "+xpathRow+", ");
+			System.out.println(driver.findElement(By.xpath("//table/tbody/tr[6]/td[1]/div")).getText());			
+			//			
+			lst1wRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[2]/h3")).getText();
 			System.out.println("lst1wRate is "+lst1wRate);		
-			lst1mRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[3]/h3")).getText();
+			lst1mRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[3]/h3")).getText();
 			System.out.println("lst1mRate is "+lst1mRate);		
-			lst3mRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[4]/h3")).getText();
+			lst3mRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[4]/h3")).getText();
 			System.out.println("lst3mRate is "+lst3mRate);
-			lst6mRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[5]/h3")).getText();
+			lst6mRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[5]/h3")).getText();
 			System.out.println("lst6mRate is "+lst6mRate);
-			curyearRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[6]/h3")).getText();
+			curyearRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[6]/h3")).getText();
 			System.out.println("curyearRate is "+curyearRate);
-			lst1yRate= driver.findElement(By.xpath("//table/tbody/tr[6]/td[7]/h3")).getText();
+			lst1yRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[7]/h3")).getText();
 			System.out.println("lst1yRate is "+lst1yRate);
 			
 			FundRateRpt frRpt=new FundRateRpt();
@@ -72,27 +84,25 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			frRpt.setLst1yRate(lst1yRate);
 			//start a new thread
 			thCount++;
-			insertFundRateRpt(frRpt);
+			//insertFundRateRpt(frRpt);
+			fundRateRptService.insertFundRateRptThread(frRpt);
 			// once thread count growth every 20, sleep 3 seconds
 			if((thCount%20)==0){
 				try {
 					System.out.println("growth every 20, sleep 3 seconds ......");
-					Thread.sleep(3000);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			xpathRow=6;
+			//if(thCount>=5) break;  // for debug
 		}
 		//close driver
 		driver.quit();
 	}
-	FundRateRptServiceRunnable fundRateRptServiceRunnable=(FundRateRptServiceRunnable)SpringContextUtils.getBean("fundRateRptServiceRunnable");
-	public void insertFundRateRpt(FundRateRpt fdRpt){		
-		fundRateRptServiceRunnable.setFundRateRpt(fdRpt);
-		Thread th=new Thread(fundRateRptServiceRunnable);
-		th.start();		
-	}	
+	
 	//injection
 	IFundService fundService; 
 	IFundRateService fundRateService;

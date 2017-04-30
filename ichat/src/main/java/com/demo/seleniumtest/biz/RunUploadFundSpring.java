@@ -22,6 +22,11 @@ public class RunUploadFundSpring{
 		String xlsFileName="D:\\Life\\fund\\stock1fund.xls";
 		String sheetName="stock1fundtest";
 		//sheetName="stock1fund";
+		sheetName="hybrid2fund";
+		sheetName="bons3fund";
+		sheetName="qdii6fund";
+		sheetName="lof7fund";
+		sheetName="monetary8fund";
 		fundService.uploadFund(xlsFileName, sheetName);
 		
 		if(context!=null){

@@ -104,6 +104,8 @@ public class FundService implements IFundService {
 		row--;
 		return row;
 	}
+	// 在Service中有可用Sping依敕注入fundWriteDao
+	// 在线程 类中 fundWriteDao 用set方法导入,解决Spring不支多线程的缺点。
 	public void insertFundThread(Fund fund){
 		FundServiceRunnable fundServiceRunnable=new FundServiceRunnable();
 		fundServiceRunnable.setFundWriteDao(fundWriteDao);

@@ -12,6 +12,10 @@ public class FundRateRptService implements IFundRateRptService {
 	public void insertFundRateRpt(FundRateRpt fundRateRpt) {
 		fundRateRptDao.insertFundRateRpt(fundRateRpt);
 	}
+	@Override
+	public void insertFundRateRptThread(FundRateRpt fundRateRpt) {
+		runInsertFundRateRptThread(fundRateRpt);
+	}
 
 	@Override
 	public void insertFundRateRpt(List<FundRateRpt> ls) {
@@ -29,6 +33,13 @@ public class FundRateRptService implements IFundRateRptService {
 	public void genFundRateRpt() {
 		// TODO Auto-generated method stub
 		
+	}
+	private void runInsertFundRateRptThread(FundRateRpt fundRateRpt){
+		FundRateRptServiceRunnable fundRateRptServiceRunnable=new FundRateRptServiceRunnable();
+		fundRateRptServiceRunnable.setFundRateRptDao(fundRateRptDao);
+		fundRateRptServiceRunnable.setFundRateRpt(fundRateRpt);
+		Thread th=new Thread(fundRateRptServiceRunnable);
+		th.start();	
 	}
 	
 	//injection

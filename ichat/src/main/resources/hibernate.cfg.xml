@@ -37,6 +37,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping resource="com/services/pojo/fund/Fund.hbm.xml"/>
+        <mapping resource="com/services/pojo/fund/FundRateRpt.hbm.xml"/>
 
     </session-factory>
 

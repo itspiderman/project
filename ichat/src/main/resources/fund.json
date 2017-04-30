@@ -37,7 +37,12 @@
             },
             {},
             {},
-            {}
+            {},
+            {
+               "url" : "http://www.baidu.com",
+               "fundCode" : "003001",
+               "fundName" : "»ª°²²ßÂÔ"
+            }
          ]
       }
    ]
