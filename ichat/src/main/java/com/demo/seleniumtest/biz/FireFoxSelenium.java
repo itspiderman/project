@@ -11,10 +11,4 @@ public class FireFoxSelenium extends AFundSelenium  {
 		//without injection,need call initial function
 		initial();
 	}
-
-//	@Override
-//	public void getFundRate() {
-//		// TODO Auto-generated method stub		
-//	}
-
 }

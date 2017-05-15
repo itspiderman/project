@@ -1,12 +1,11 @@
 package com.services.dao.imp;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import com.demo.util.HibernateSessionFactory;
 import com.services.dao.IFundReadDao;
@@ -40,37 +39,23 @@ public class FundReadDao implements IFundReadDao {
 
 	@Override
 	public List<Fund> queryFundList() {
-//		//demo start
-//		// fund 1
-//		Fund fd=new Fund();
-//		fd.setFundUrl(fundUrl);
-//		fd.setFundCode(fundCode);
-//		fd.setFundName(fundName);
-//		fd.setFundTypecode(fundTypeCode);
-//		fd.setCrtDateTime(crtDateTime);
-//		//fund2
-//		Fund fd2=new Fund();
-//		fd2.setFundUrl("http://fund.eastmoney.com/290004.html");
-//		fd2.setFundCode("290004");
-//		fd2.setFundName("泰信优质生活混合");
-//		fd2.setFundTypecode('2');
-//		fd2.setCrtDateTime(crtDateTime);
-//		//demo end		
-//		List<Fund> ls=new ArrayList<Fund>();
-//		// connect to db to query fund records
-//		ls.add(fd);
-//		ls.add(fd2);
-		Session session=HibernateSessionFactory.getSessionFactory().openSession();
-		// HQL 大小写敏感
-//		String hql="from Fund order by fundtypecode asc, fundcode asc";
-		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode) order by a.fundTypecode asc, a.fundCode asc";
+		List<Fund> fundList=null;
+		try{
+		//Session session=HibernateSessionFactory.getSessionFactory().openSession();
+		Session session=HibernateSessionFactory.getSession();
+		
+//		HQL 大小写敏感
+		String hql="from Fund order by fundTypecode asc, fundCode asc";
+//		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode) order by a.fundTypecode asc, a.fundCode asc";
+//		
 		Query query=session.createQuery(hql);
-		List<Fund> fundList=query.list();
-
+		fundList=query.list();	
+		
 		session.close();
-		HibernateSessionFactory.closeSessionFactory();
-		
-		
+		HibernateSessionFactory.closeSession();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 		return fundList;
 	}
 
@@ -85,7 +70,4 @@ public class FundReadDao implements IFundReadDao {
 		//
 		return fd;
 	}
-	
-	
-
 }

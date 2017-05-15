@@ -8,14 +8,16 @@ public class RunFundSelenium{
 	}
 	
 	private void runSelenium(){
-		fundSelenium=new FireFoxSelenium();
+		// run firefox
+//		fundSelenium=new FireFoxSelenium();
+//		System.out.println(fundSelenium.getBrowserName());
+//		fundSelenium.insertFundRateRpt();
+		// run HtmlUnit		
+		fundSelenium=new HtmlUnitSelenium();
 		System.out.println(fundSelenium.getBrowserName());
 		fundSelenium.insertFundRateRpt();
 	}
 	
 	//inject
 	AFundSelenium fundSelenium;
-	public void setFundSelenium(AFundSelenium fundSelenium) {
-		this.fundSelenium = fundSelenium;
-	}	
 }

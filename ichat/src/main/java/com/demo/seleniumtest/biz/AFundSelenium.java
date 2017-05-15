@@ -37,7 +37,23 @@ public abstract class AFundSelenium implements IFundSelenium {
 		//fundRateService=new FundRateService();		
 		FundRate fundRate=fundRateService.getFundRateList();
 		String fundUrl=fundRate.getFund().getFundUrl();
-		driver.get(fundUrl);
+		try{
+			//driver.get("http://www.baidu.com");
+			driver.get("http://fund.eastmoney.com/001781.html");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Page title : "+ driver.getTitle());
+			
+			//
+			System.out.println(fundUrl);
+			driver.get(fundUrl);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 		System.out.println("Page title : "+ driver.getTitle());
 		try {
 			Thread.sleep(3000);

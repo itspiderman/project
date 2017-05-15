@@ -31,10 +31,9 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 	@Override
 	public void insertFundRateRpt() {
 		int thCount=0;
-		int xpathRow;
+		int xpathRow=7;
 		String quartileRanking="\u56db\u5206\u4f4d\u6392\u540d";  //四分位排名
-		String theSixthValue;
-		
+		String theSixthValue;		
 		List<Fund> flist=fundService.queryFundList();
 		Iterator<Fund> fit=flist.iterator();
 		Fund fund=null;
@@ -44,12 +43,28 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 		String lst3mRate;
 		String lst6mRate;
 		String curyearRate;
-		String lst1yRate;	
-		
+		String lst1yRate;
+		String lst2yRate;
+		String lst3yRate;
+		String lst5yRate;
+		String sinceFoundRate;
+		//percentage
+		String lst1wPct;
+		String lst1mPct;
+		String lst3mPct;
+		String lst6mPct;
+		String curyearPct;
+		String lst1yPct;
+		String lst2yPct;
+		String lst3yPct;
+		String lst5yPct;
+		String sinceFoundPct;
+		String lstUpdDate;
+
 		while(fit.hasNext()){			
 			fund=(Fund)fit.next();
 			driver.get(fund.getFundUrl());
-			theSixthValue=driver.findElement(By.xpath("//table/tbody/tr[6]/td[1]/div")).getText();
+			theSixthValue=driver.findElement(By.xpath("//div/ul[1]/li[7]")).getText();
 			if(quartileRanking.equals(theSixthValue.trim())){
 				System.out.print("set xpathrow=6, ");
 				xpathRow=6;
@@ -59,21 +74,53 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			}			
 			//
 			System.out.print(fund.getFundCode()+" "+fund.getFundName()+",fundtype "+fund.getFundTypecode()+" , "+xpathRow+", ");
-			System.out.println(driver.findElement(By.xpath("//table/tbody/tr[6]/td[1]/div")).getText());			
+			System.out.println(theSixthValue);			
 			//			
-			lst1wRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[2]/h3")).getText();
+			lst1wRate= driver.findElement(By.xpath("//div/ul[2]/li["+xpathRow+"]")).getText();
 			System.out.println("lst1wRate is "+lst1wRate);		
-			lst1mRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[3]/h3")).getText();
+			lst1mRate= driver.findElement(By.xpath("//div/ul[3]/li["+xpathRow+"]")).getText();
 			System.out.println("lst1mRate is "+lst1mRate);		
-			lst3mRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[4]/h3")).getText();
+			lst3mRate= driver.findElement(By.xpath("//div/ul[4]/li["+xpathRow+"]")).getText();
 			System.out.println("lst3mRate is "+lst3mRate);
-			lst6mRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[5]/h3")).getText();
+			lst6mRate= driver.findElement(By.xpath("//div/ul[5]/li["+xpathRow+"]")).getText();
 			System.out.println("lst6mRate is "+lst6mRate);
-			curyearRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[6]/h3")).getText();
+			curyearRate= driver.findElement(By.xpath("//div/ul[6]/li["+xpathRow+"]")).getText();
 			System.out.println("curyearRate is "+curyearRate);
-			lst1yRate= driver.findElement(By.xpath("//table/tbody/tr["+xpathRow+"]/td[7]/h3")).getText();
-			System.out.println("lst1yRate is "+lst1yRate);
-			
+			lst1yRate= driver.findElement(By.xpath("//div/ul[7]/li["+xpathRow+"]")).getText();
+			System.out.println("lst1yRate is "+lst1yRate);			
+			lst2yRate= driver.findElement(By.xpath("//div/ul[8]/li["+xpathRow+"]")).getText();
+			System.out.println("lst2yRate is "+lst2yRate);			
+			lst3yRate= driver.findElement(By.xpath("//div/ul[9]/li["+xpathRow+"]")).getText();
+			System.out.println("lst3yRate is "+lst3yRate);			
+			lst5yRate= driver.findElement(By.xpath("//div/ul[10]/li["+xpathRow+"]")).getText();
+			System.out.println("lst5yRate is "+lst5yRate);			
+			sinceFoundRate= driver.findElement(By.xpath("//div/ul[11]/li["+xpathRow+"]")).getText();			
+			System.out.println("sinceFoundRate is "+sinceFoundRate);
+//			percentage
+			lst1wPct= driver.findElement(By.xpath("//div/ul[2]/li[2]")).getText();
+			System.out.println("lst1wPct is "+lst1wPct);		
+			lst1mPct= driver.findElement(By.xpath("//div/ul[3]/li[2]")).getText();
+			System.out.println("lst1mPct is "+lst1mPct);		
+			lst3mPct= driver.findElement(By.xpath("//div/ul[4]/li[2]")).getText();
+			System.out.println("lst3mPct is "+lst3mPct);
+			lst6mPct= driver.findElement(By.xpath("//div/ul[5]/li[2]")).getText();
+			System.out.println("lst6mPct is "+lst6mPct);
+			curyearPct= driver.findElement(By.xpath("//div/ul[6]/li[2]")).getText();
+			System.out.println("curyearPct is "+curyearPct);
+			lst1yPct= driver.findElement(By.xpath("//div/ul[7]/li[2]")).getText();
+			System.out.println("lst1yPct is "+lst1yPct);			
+			lst2yPct= driver.findElement(By.xpath("//div/ul[8]/li[2]")).getText();
+			System.out.println("lst2yPct is "+lst2yPct);			
+			lst3yPct= driver.findElement(By.xpath("//div/ul[9]/li[2]")).getText();
+			System.out.println("lst3yPct is "+lst3yPct);			
+			lst5yPct= driver.findElement(By.xpath("//div/ul[10]/li[2]")).getText();
+			System.out.println("lst5yPct is "+lst5yPct);			
+			sinceFoundPct= driver.findElement(By.xpath("//div/ul[11]/li[2]")).getText();			
+			System.out.println("sinceFoundPct is "+sinceFoundPct);
+			lstUpdDate=driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();
+			lstUpdDate = lstUpdDate.substring(6);
+			System.out.println("sinceFoundPct is "+lstUpdDate);
+//			
 			FundRateRpt frRpt=new FundRateRpt();
 			frRpt.setFundCode(fund.getFundCode());
 			frRpt.setLst1wRate(lst1wRate);
@@ -82,27 +129,35 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			frRpt.setLst6mRate(lst6mRate);
 			frRpt.setCuryearRate(curyearRate);
 			frRpt.setLst1yRate(lst1yRate);
+			//percentage
+//			frRpt.setFundCode(fund.getFundCode());
+//			frRpt.setLst1wPct(lst1wPct);
+//			frRpt.setLst1mPct(lst1mPct);
+//			frRpt.setLst3mPct(lst3mPct);
+//			frRpt.setLst6mPct(lst6mPct);
+//			frRpt.setCuryearPct(curyearPct);
+//			frRpt.setLst1yPct(lst1yPct);				
 			//start a new thread
 			thCount++;
 			//insertFundRateRpt(frRpt);
 			fundRateRptService.insertFundRateRptThread(frRpt);
 			// once thread count growth every 20, sleep 3 seconds
 			if((thCount%20)==0){
-				try {
+				try {				
 					System.out.println("growth every 20, sleep 3 seconds ......");
 					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+				} catch (InterruptedException e) {					
 					e.printStackTrace();
 				}
 			}
 			xpathRow=6;
-			//if(thCount>=5) break;  // for debug
+			if(thCount>=5) break;  // for debug
 		}
 		//close driver
 		driver.quit();
 	}
 	
+
 	//injection
 	IFundService fundService; 
 	IFundRateService fundRateService;

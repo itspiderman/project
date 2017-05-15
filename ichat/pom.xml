@@ -3,15 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com</groupId>
 	<artifactId>ichat</artifactId>
-	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ichat Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
+	<packaging>jar</packaging>
 	<properties>
-		<project.build.sourceEncoding>
-			UTF-8
-		</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<repositories>
@@ -32,7 +29,6 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
@@ -44,7 +40,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-json-plugin</artifactId>
@@ -117,7 +112,12 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0</version>
 		</dependency>
-
+		<!-- htmlunit,similar as browser -->
+		<dependency>
+		    <groupId>net.sourceforge.htmlunit</groupId>
+		    <artifactId>htmlunit</artifactId>
+		    <version>2.26</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ichat</finalName>
@@ -149,11 +149,47 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
+				    <defaultLibBundleDir>lib</defaultLibBundleDir> 
 					<encoding>utf-8</encoding>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->			
+			<plugin>  
+				<groupId>org.apache.maven.plugins</groupId>  
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.0</version> 
+				<configuration>  
+				  <archive>
+				  	<manifest>
+				  		<mainClass>com.demo.seleniumtest.biz.RunFundSeleniumSpring</mainClass>
+				  		<addClasspath>true</addClasspath>
+				  		<classpathPrefix>lib/</classpathPrefix>
+				  	</manifest>  
+				  </archive>  
+				  <classesDirectory></classesDirectory>  
+				</configuration>  
+			</plugin> 
+			<!-- 拷贝依赖的jar包到lib目录 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
-	</build>
+	</build>	
 </project>

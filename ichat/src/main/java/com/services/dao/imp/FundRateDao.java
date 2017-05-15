@@ -25,13 +25,13 @@ public class FundRateDao implements IFundRateDao {
 	}
 
 	@Override
-	public List<FundRate> getFundRate() {	
-		Fund fund=null;
+	public List<FundRate> getFundRate() {
+		List<FundRate> frList=new ArrayList<FundRate>();
 		
-		List<FundRate> frList=new ArrayList<FundRate>();		
-		
+		Fund fund=null;		
 		List<Fund> fList=fundReadDao.queryFundList();
 		Iterator<Fund> fit=fList.iterator();
+		
 		while(fit.hasNext()){
 			FundRate fr=new FundRate();
 			fund=(Fund)fit.next();
