@@ -10,7 +10,7 @@ public class RunFundSeleniumSpringHtmlUnit{
 	}
 	
 	private void runSelenium(){
-		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("applicationContext.xml");
+		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("./spring/applicationContext.xml");
 		AFundSeleniumSpring fundSelenium=(HtmlUnitSeleniumSpring)context.getBean("htmlUnitSeleniumSpring");
 		System.out.println(fundSelenium.getBrowserName());
 		fundSelenium.insertFundRateRpt();

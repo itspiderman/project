@@ -1,6 +1,7 @@
 package com.services.dao.imp;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -45,10 +46,14 @@ public class FundReadDao implements IFundReadDao {
 		Session session=HibernateSessionFactory.getSession();
 		
 //		HQL 大小写敏感
-		String hql="from Fund order by fundTypecode asc, fundCode asc";
+//		String hql="from Fund order by fundTypecode asc, fundCode asc";
 //		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode) order by a.fundTypecode asc, a.fundCode asc";
-//		
-		Query query=session.createQuery(hql);
+//		Query query=session.createQuery(hql);
+		
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode and (b.lstUpdDate>?)) order by a.fundTypecode asc, a.fundCode asc";
+		Query query=session.createQuery(hql)
+				.setParameter(0,format.parse("2017-05-25"));
 		fundList=query.list();	
 		
 		session.close();

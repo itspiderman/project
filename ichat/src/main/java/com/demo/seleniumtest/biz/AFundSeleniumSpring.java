@@ -1,5 +1,8 @@
 package com.demo.seleniumtest.biz;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,11 +36,12 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 		int thCount=0;
 		int xpathRow=7;
 		String quartileRanking="\u56db\u5206\u4f4d\u6392\u540d";  //四分位排名
-		String theSixthValue;		
+		String theSixthValue="";		
 		List<Fund> flist=fundService.queryFundList();
 		Iterator<Fund> fit=flist.iterator();
 		Fund fund=null;
 		//get the rate
+		FundRateRpt frRpt=new FundRateRpt();
 		String lst1wRate;
 		String lst1mRate;
 		String lst3mRate;
@@ -59,12 +63,21 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 		String lst3yPct;
 		String lst5yPct;
 		String sinceFoundPct;
-		String lstUpdDate;
+		Date lstUpdDate;
+		
+		System.out.println("Start fetch each fund");
 
 		while(fit.hasNext()){			
 			fund=(Fund)fit.next();
+			System.out.println("driver.get(fund.getFundUrl());");
 			driver.get(fund.getFundUrl());
-			theSixthValue=driver.findElement(By.xpath("//div/ul[1]/li[7]")).getText();
+			System.out.println("before : "+theSixthValue );
+			try{
+				theSixthValue=driver.findElement(By.xpath("//div/ul[1]/li[7]")).getText();
+				System.out.println("after : "+theSixthValue );
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 			if(quartileRanking.equals(theSixthValue.trim())){
 				System.out.print("set xpathrow=6, ");
 				xpathRow=6;
@@ -117,11 +130,16 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			System.out.println("lst5yPct is "+lst5yPct);			
 			sinceFoundPct= driver.findElement(By.xpath("//div/ul[11]/li[2]")).getText();			
 			System.out.println("sinceFoundPct is "+sinceFoundPct);
-			lstUpdDate=driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();
-			lstUpdDate = lstUpdDate.substring(6);
-			System.out.println("sinceFoundPct is "+lstUpdDate);
-//			
-			FundRateRpt frRpt=new FundRateRpt();
+			
+			String lstUpdDateStr=driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			try{
+				lstUpdDate =sdf.parse(lstUpdDateStr.substring(6));
+				System.out.println("sinceFoundPct is "+lstUpdDateStr);
+				frRpt.setLstUpdDate(lstUpdDate);
+			}catch(ParseException ex){
+				ex.printStackTrace();
+			}
 			frRpt.setFundCode(fund.getFundCode());
 			frRpt.setLst1wRate(lst1wRate);
 			frRpt.setLst1mRate(lst1mRate);
@@ -129,14 +147,21 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			frRpt.setLst6mRate(lst6mRate);
 			frRpt.setCuryearRate(curyearRate);
 			frRpt.setLst1yRate(lst1yRate);
+			frRpt.setLst2yRate(lst2yRate);
+			frRpt.setLst3yRate(lst3yRate);
+			frRpt.setLst5yRate(lst5yRate);
+			frRpt.setSinceFoundRate(sinceFoundRate);
 			//percentage
-//			frRpt.setFundCode(fund.getFundCode());
-//			frRpt.setLst1wPct(lst1wPct);
-//			frRpt.setLst1mPct(lst1mPct);
-//			frRpt.setLst3mPct(lst3mPct);
-//			frRpt.setLst6mPct(lst6mPct);
-//			frRpt.setCuryearPct(curyearPct);
-//			frRpt.setLst1yPct(lst1yPct);				
+			frRpt.setLst1wPct(lst1wPct);
+			frRpt.setLst1mPct(lst1mPct);
+			frRpt.setLst3mPct(lst3mPct);
+			frRpt.setLst6mPct(lst6mPct);
+			frRpt.setCuryearPct(curyearPct);
+			frRpt.setLst1yPct(lst1yPct);			
+			frRpt.setLst2yPct(lst2yPct);
+			frRpt.setLst3yPct(lst3yPct);
+			frRpt.setLst5yPct(lst5yPct);
+			frRpt.setSinceFoundPct(sinceFoundPct);
 			//start a new thread
 			thCount++;
 			//insertFundRateRpt(frRpt);
@@ -151,7 +176,7 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 				}
 			}
 			xpathRow=6;
-			if(thCount>=5) break;  // for debug
+//			if(thCount>=5) break;  // for debug
 		}
 		//close driver
 		driver.quit();
