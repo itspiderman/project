@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class FundRateRpt {
 	private String fundCode;
+	private String sFundAmt;
+	private float fundAmt;
 	private String lst1wRate;
 	private String lst1mRate;
 	private String lst3mRate;
@@ -32,6 +34,18 @@ public class FundRateRpt {
 	}
 	public void setFundCode(String fundCode) {
 		this.fundCode = fundCode;
+	}		
+	public String getsFundAmt() {
+		return sFundAmt;
+	}
+	public void setsFundAmt(String sFundAmt) {
+		this.sFundAmt = sFundAmt;
+	}	
+	public float getFundAmt() {
+		return fundAmt;
+	}
+	public void setFundAmt(float fundAmt) {
+		this.fundAmt = fundAmt;
 	}
 	public String getLst1wRate() {
 		return lst1wRate;

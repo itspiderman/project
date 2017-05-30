@@ -40,12 +40,14 @@ public class FundReadDao implements IFundReadDao {
 
 	@Override
 	public List<Fund> queryFundList() {
-		List<Fund> fundList=null;
-		try{
-		//Session session=HibernateSessionFactory.getSessionFactory().openSession();
-		Session session=HibernateSessionFactory.getSession();
 		
-//		HQL 大小写敏感
+		System.out.println("start fundReadDao. queryFundList");
+		List<Fund> fundList=null;
+		Session session=HibernateSessionFactory.getSession();
+		try{
+		//Session session=HibernateSessionFactory.getSessionFactory().openSession();	
+		
+//		HQL 大小写敏感, HQL操作的是类对类，而不是表对像
 //		String hql="from Fund order by fundTypecode asc, fundCode asc";
 //		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode) order by a.fundTypecode asc, a.fundCode asc";
 //		Query query=session.createQuery(hql);
@@ -53,13 +55,14 @@ public class FundReadDao implements IFundReadDao {
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode and (b.lstUpdDate>?)) order by a.fundTypecode asc, a.fundCode asc";
 		Query query=session.createQuery(hql)
-				.setParameter(0,format.parse("2017-05-25"));
-		fundList=query.list();	
+				.setParameter(0,format.parse("2017-05-26"));
+		fundList=query.list();		
 		
-		session.close();
-		HibernateSessionFactory.closeSession();
 		}catch(Exception ex){
 			ex.printStackTrace();
+		}finally{
+			System.out.println("close session ..... ");			
+			HibernateSessionFactory.closeSession();			
 		}
 		return fundList;
 	}

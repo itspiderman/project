@@ -13,9 +13,9 @@ public class RunFundSelenium{
 //		System.out.println(fundSelenium.getBrowserName());
 //		fundSelenium.insertFundRateRpt();
 		// run HtmlUnit		
-		fundSelenium=new HtmlUnitSelenium();
-		System.out.println(fundSelenium.getBrowserName());
-		fundSelenium.insertFundRateRpt();
+//		fundSelenium=new HtmlUnitSelenium();
+//		System.out.println(fundSelenium.getBrowserName());
+//		fundSelenium.insertFundRateRpt();
 	}
 	
 	//inject

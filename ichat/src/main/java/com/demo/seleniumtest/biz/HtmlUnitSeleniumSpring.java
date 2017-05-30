@@ -8,4 +8,7 @@ public class HtmlUnitSeleniumSpring extends AFundSeleniumSpring {
 		//System.setProperty("webdriver.firefox.marionette", "C:\\Program Files\\Mozilla Firefox\\geckodriver.exe");		
 		super.setDriver(new HtmlUnitDriver());
 	}
+	public void insertFundRateRpt() {
+		System.out.println("this is in HtmlUnitSeleiumSpring");
+	}
 }
