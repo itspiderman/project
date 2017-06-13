@@ -3,6 +3,7 @@ package com.demo.seleniumtest.biz;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlDefinition;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
+import com.gargoylesoftware.htmlunit.html.HtmlListItem;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
 import com.gargoylesoftware.htmlunit.javascript.host.dom.NodeList;
@@ -12,7 +13,7 @@ import junit.framework.TestCase;
 
 //import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 //public class HtmlUnitSelenium extends AFundSelenium  {
-public class HtmlUnitSelenium {
+public class HtmlUnitDemo {
 	
 //	HtmlUnitSelenium(){
 //		this.setBrowserName("HtmlUnit");
@@ -22,7 +23,7 @@ public class HtmlUnitSelenium {
 //	}
 	
 	public static void main(String[] args){
-		HtmlUnitSelenium hu=new HtmlUnitSelenium();
+		HtmlUnitDemo hu=new HtmlUnitDemo();
 		try {
 			hu.homepage();
 		} catch (Exception e) {
@@ -45,17 +46,24 @@ public class HtmlUnitSelenium {
 			HtmlSpan sp =(HtmlSpan) page.getByXPath("//label[5]/span").get(0);
 			String  inputs =  sp.asText();
 			System.out.println(inputs);	
+			float fundAmt;
+			inputs=inputs.substring(0, inputs.indexOf("元")-1);
+			System.out.println(inputs);	
 			
 			page=webClient.getPage("http://fund.eastmoney.com/f10/jdzf_000042.html");
 			System.out.println(page.getTitleText());
 			sp =(HtmlSpan) page.getByXPath("//label[5]/span").get(0);
 			inputs =  sp.asText();
 			System.out.println(inputs);	
+			
+			HtmlListItem li=(HtmlListItem) page.getByXPath("//div/ul[2]/li[7]").get(0);
+			 inputs =  li.asText();
+			System.out.println("Li value " +inputs);	
+			
+
 			webClient.close();
 			
-			float fundAmt;
-			inputs=inputs.substring(0, inputs.indexOf("元")-1);
-			System.out.println(inputs);	
+
 
 		}
 	}

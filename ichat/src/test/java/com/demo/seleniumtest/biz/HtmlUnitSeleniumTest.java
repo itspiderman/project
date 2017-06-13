@@ -6,11 +6,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class HtmlUnitSeleniumTest {
-	static HtmlUnitSelenium hu;
+	static HtmlUnitDemo hu;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		hu=new HtmlUnitSelenium();
+		hu=new HtmlUnitDemo();
 	}
 
 	@Test

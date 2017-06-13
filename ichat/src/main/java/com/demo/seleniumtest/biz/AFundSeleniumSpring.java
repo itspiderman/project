@@ -71,6 +71,8 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			String lst5yPct;
 			String sinceFoundPct;
 			Date lstUpdDate;
+			
+			int fm=flist.size();
 
 			System.out.println("Start fetch each fund");
 
@@ -94,7 +96,7 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 				}
 				//
 				System.out.println(fund.getFundCode() + " " + fund.getFundName() + ",fundtype " + fund.getFundTypecode()
-						+ " , " + xpathRow + ", ");
+						+ " , 7, ");
 				System.out.println(theSixthValue);
 				//
 				sFundAmt = driver.findElement(By.xpath("//label[5]/span")).getText();
@@ -107,37 +109,39 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 				}
 				System.out.println(",float 资产规模：" + fundAmt);
 				//
-				lst1wRate = driver.findElement(By.xpath("//div/ul[2]/li[" + xpathRow + "]")).getText();
-				System.out.println("lst1wRate is " + lst1wRate);
-				lst1mRate = driver.findElement(By.xpath("//div/ul[3]/li[" + xpathRow + "]")).getText();
-				System.out.println("lst1mRate is " + lst1mRate);
-				lst3mRate = driver.findElement(By.xpath("//div/ul[4]/li[" + xpathRow + "]")).getText();
-				System.out.println("lst3mRate is " + lst3mRate);
-				lst6mRate = driver.findElement(By.xpath("//div/ul[5]/li[" + xpathRow + "]")).getText();
-				System.out.println("lst6mRate is " + lst6mRate);
-				curyearRate = driver.findElement(By.xpath("//div/ul[6]/li[" + xpathRow + "]")).getText();
+				curyearRate = driver.findElement(By.xpath("//div/ul[2]/li[7]")).getText();
 				System.out.println("curyearRate is " + curyearRate);
-				lst1yRate = driver.findElement(By.xpath("//div/ul[7]/li[" + xpathRow + "]")).getText();
+				
+				lst1wRate = driver.findElement(By.xpath("//div/ul[3]/li[7]")).getText();
+				System.out.println("lst1wRate is " + lst1wRate);
+				lst1mRate = driver.findElement(By.xpath("//div/ul[4]/li[7]")).getText();
+				System.out.println("lst1mRate is " + lst1mRate);
+				lst3mRate = driver.findElement(By.xpath("//div/ul[5]/li[7]")).getText();
+				System.out.println("lst3mRate is " + lst3mRate);
+				lst6mRate = driver.findElement(By.xpath("//div/ul[6]/li[7]")).getText();
+				System.out.println("lst6mRate is " + lst6mRate);				
+				
+				lst1yRate = driver.findElement(By.xpath("//div/ul[7]/li[7]")).getText();
 				System.out.println("lst1yRate is " + lst1yRate);
-				lst2yRate = driver.findElement(By.xpath("//div/ul[8]/li[" + xpathRow + "]")).getText();
+				lst2yRate = driver.findElement(By.xpath("//div/ul[8]/li[7]")).getText();
 				System.out.println("lst2yRate is " + lst2yRate);
-				lst3yRate = driver.findElement(By.xpath("//div/ul[9]/li[" + xpathRow + "]")).getText();
+				lst3yRate = driver.findElement(By.xpath("//div/ul[9]/li[7]")).getText();
 				System.out.println("lst3yRate is " + lst3yRate);
-				lst5yRate = driver.findElement(By.xpath("//div/ul[10]/li[" + xpathRow + "]")).getText();
+				lst5yRate = driver.findElement(By.xpath("//div/ul[10]/li[7]")).getText();
 				System.out.println("lst5yRate is " + lst5yRate);
-				sinceFoundRate = driver.findElement(By.xpath("//div/ul[11]/li[" + xpathRow + "]")).getText();
+				sinceFoundRate = driver.findElement(By.xpath("//div/ul[11]/li[7]")).getText();
 				System.out.println("sinceFoundRate is " + sinceFoundRate);
 				// percentage
-				lst1wPct = driver.findElement(By.xpath("//div/ul[2]/li[2]")).getText();
+				curyearPct = driver.findElement(By.xpath("//div/ul[2]/li[2]")).getText();
+				System.out.println("curyearPct is " + curyearPct);				
+				lst1wPct = driver.findElement(By.xpath("//div/ul[3]/li[2]")).getText();
 				System.out.println("lst1wPct is " + lst1wPct);
-				lst1mPct = driver.findElement(By.xpath("//div/ul[3]/li[2]")).getText();
+				lst1mPct = driver.findElement(By.xpath("//div/ul[4]/li[2]")).getText();
 				System.out.println("lst1mPct is " + lst1mPct);
-				lst3mPct = driver.findElement(By.xpath("//div/ul[4]/li[2]")).getText();
+				lst3mPct = driver.findElement(By.xpath("//div/ul[5]/li[2]")).getText();
 				System.out.println("lst3mPct is " + lst3mPct);
-				lst6mPct = driver.findElement(By.xpath("//div/ul[5]/li[2]")).getText();
-				System.out.println("lst6mPct is " + lst6mPct);
-				curyearPct = driver.findElement(By.xpath("//div/ul[6]/li[2]")).getText();
-				System.out.println("curyearPct is " + curyearPct);
+				lst6mPct = driver.findElement(By.xpath("//div/ul[6]/li[2]")).getText();
+				System.out.println("lst6mPct is " + lst6mPct);				
 				lst1yPct = driver.findElement(By.xpath("//div/ul[7]/li[2]")).getText();
 				System.out.println("lst1yPct is " + lst1yPct);
 				lst2yPct = driver.findElement(By.xpath("//div/ul[8]/li[2]")).getText();
@@ -149,16 +153,20 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 				sinceFoundPct = driver.findElement(By.xpath("//div/ul[11]/li[2]")).getText();
 				System.out.println("sinceFoundPct is " + sinceFoundPct);
 
-				String lstUpdDateStr = driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String lstUpdDateStr = driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();				
+				if (lst1wRate.trim().equals("---") || lstUpdDateStr.trim().equals("")){
+					System.out.println("lstUpdDateStr is "+lstUpdDateStr+" ,continue");
+					continue;
+				}
 				try {
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					lstUpdDate = sdf.parse(lstUpdDateStr.substring(6));
 					System.out.println("sinceFoundPct is " + lstUpdDateStr);
 					frRpt.setLstUpdDate(lstUpdDate);
 				} catch (ParseException ex) {
 					System.out.println("data parse error. "+ex.getMessage());
 					throw ex;
-				}
+				}				
 				frRpt.setFundCode(fund.getFundCode());
 				frRpt.setsFundAmt(sFundAmt);
 				frRpt.setFundAmt(fundAmt);
@@ -196,9 +204,8 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 						e.printStackTrace();
 					}
 				}
-				xpathRow = 6;
-				if (thCount >= 5)
-					break; // for debug
+				//xpathRow = 6;
+				//if (thCount >= 5) 	break; // for debug
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

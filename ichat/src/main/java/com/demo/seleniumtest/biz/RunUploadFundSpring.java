@@ -15,7 +15,7 @@ public class RunUploadFundSpring{
 		//ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("applicationContext.xml");
 		ClassPathXmlApplicationContext  context=null;
 		if(context==null){
-			context=new ClassPathXmlApplicationContext("applicationContext.xml");
+			context=new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 		}
 		context.refresh();
 		FundService fundService=(FundService)context.getBean("fundService");
@@ -27,6 +27,7 @@ public class RunUploadFundSpring{
 		sheetName="qdii6fund";
 		sheetName="lof7fund";
 		sheetName="monetary8fund";
+		sheetName="monetaryICBC";
 		fundService.uploadFund(xlsFileName, sheetName);
 		
 		if(context!=null){
