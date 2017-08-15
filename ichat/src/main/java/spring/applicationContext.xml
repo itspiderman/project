@@ -31,6 +31,5 @@
 		<property name="fundRateRptService" ref="fundRateRptService" />
 	</bean>
 	<!-- even don't call this calss, but it will be loaded at the begining -->	
-	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />
-	<bean id="htmlUnitSeleniumSpring" class="com.demo.seleniumtest.biz.HtmlUnitSeleniumSpring" parent="aFundSelenium" />	
+	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />	
 </beans>

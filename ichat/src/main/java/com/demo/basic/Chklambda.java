@@ -9,7 +9,8 @@ public class Chklambda {
 		// TODO Auto-generated method stub
 		Chklambda lb=new Chklambda();
 		lb.chkLambda();
-		
+		String sn= "1,284.82";
+		System.out.println(sn.replace(",",""));
 		
 	}
 	

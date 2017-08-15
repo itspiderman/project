@@ -5,7 +5,6 @@ package com.services.imp;
 //
 //import com.demo.util.SpringContextUtils;
 import com.services.dao.IFundWriteDao;
-//import com.services.dao.imp.FundWriteDao;
 import com.services.pojo.fund.Fund;
 
 public class FundServiceRunnable implements Runnable {

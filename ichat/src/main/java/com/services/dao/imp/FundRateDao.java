@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.services.dao.IFundReadDao;
+import com.services.pojo.fund.Fund;
+import com.services.pojo.other.FundRate;
+import com.services.pojo.other.FundRateStep;
 import com.services.dao.IFundRateDao;
 import com.services.dao.IFundRateStepDao;
-import com.services.pojo.fund.Fund;
-import com.services.pojo.fund.FundRate;
-import com.services.pojo.fund.FundRateStep;
 
 public class FundRateDao implements IFundRateDao {
 	

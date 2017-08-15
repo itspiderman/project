@@ -2,15 +2,14 @@ d:\project\ichat\src\main\java\com\demo\util\HibernateSessionFactory.java
 d:\project\ichat\src\main\java\com\services\imp\FundRateRptService.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\FundSeleniumFactory.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\RunSelenium.java
-d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\RunFundSeleniumSpringHtmlUnit.java
 d:\project\ichat\src\main\java\com\demo\izo803\Chapter1.java
 d:\project\ichat\src\main\java\com\demo\threadtest\RunTreadTest.java
 d:\project\ichat\src\main\java\com\services\dao\IFundWriteDao.java
 d:\project\ichat\src\main\java\com\services\pojo\fund\FundRateRpt.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\ChromeSelenium.java
 d:\project\ichat\src\main\java\com\demo\synchronizedtest\SynchronizedTest.java
-d:\project\ichat\src\main\java\com\services\pojo\fund\FundRateStep.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\FireFoxSeleniumSpring.java
+d:\project\ichat\src\main\java\com\services\pojo\other\FundRate.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\RunFundSelenium.java
 d:\project\ichat\src\main\java\com\demo\Calculator.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\AFundSeleniumSpring.java
@@ -19,6 +18,7 @@ d:\project\ichat\src\main\java\com\services\imp\FundRateServiceSpring.java
 d:\project\ichat\src\main\java\com\javastudy\DateTest.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\FireFoxSelenium.java
 d:\project\ichat\src\main\java\com\services\dao\IFundReadDao.java
+d:\project\ichat\src\main\java\com\services\pojo\other\FundType.java
 d:\project\ichat\src\main\java\com\services\dao\imp\FundRateStepDao.java
 d:\project\ichat\src\main\java\com\acent\LoginAction.java
 d:\project\ichat\src\main\java\com\services\dao\IFundRateRptDao.java
@@ -36,7 +36,6 @@ d:\project\ichat\src\main\java\com\services\dao\IFundRateDao.java
 d:\project\ichat\src\main\java\com\services\dao\imp\FundRateDao.java
 d:\project\ichat\src\main\java\com\services\imp\FundServiceRunnable.java
 d:\project\ichat\src\main\java\com\services\imp\FundRateService.java
-d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\HtmlUnitSelenium.java
 d:\project\ichat\src\main\java\com\demo\threadtest\ImplementRunnable.java
 d:\project\ichat\src\main\java\com\services\imp\FundRateStepService.java
 d:\project\ichat\src\main\java\com\services\imp\FundService.java
@@ -45,11 +44,9 @@ d:\project\ichat\src\main\java\com\services\pojo\fund\Fund.java
 d:\project\ichat\src\main\java\com\services\dao\imp\FundReadDao.java
 d:\project\ichat\src\main\java\com\foo\Bar.java
 d:\project\ichat\src\main\java\com\services\IFundRateRptService.java
-d:\project\ichat\src\main\java\com\services\pojo\fund\FundType.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\RunUploadFundSpring.java
+d:\project\ichat\src\main\java\com\services\pojo\other\FundRateStep.java
 d:\project\ichat\src\main\java\com\foo\MyApp.java
 d:\project\ichat\src\main\java\com\demo\basic\Chklambda.java
 d:\project\ichat\src\main\java\com\services\IFundRateService.java
 d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\RunFundSeleniumSpring.java
-d:\project\ichat\src\main\java\com\services\pojo\fund\FundRate.java
-d:\project\ichat\src\main\java\com\demo\seleniumtest\biz\HtmlUnitSeleniumSpring.java

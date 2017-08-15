@@ -172,7 +172,7 @@
 				  <archive>
 				  	<manifest>
 				  		<mainClass>com.demo.seleniumtest.biz.RunFundSeleniumSpring</mainClass>
-				  		<addClasspath>true</addClasspath>
+				  		<addClasspath>false</addClasspath>
 				  		<classpathPrefix>lib/</classpathPrefix>
 				  	</manifest>  
 				  </archive>  
@@ -197,7 +197,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>            
 		</plugins>
 	</build>	
 </project>

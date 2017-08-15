@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import com.demo.util.HibernateSessionFactory;
@@ -54,8 +57,32 @@ public class FundReadDao implements IFundReadDao {
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode and (b.lstUpdDate>?)) order by a.fundTypecode asc, a.fundCode asc";
 		Query query=session.createQuery(hql)
-				.setParameter(0,format.parse("2017-06-01"));
+				.setParameter(0,format.parse("2017-08-03"));
 		fundList=query.list();		
+		
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally{
+			System.out.println("close session ..... ");			
+			HibernateSessionFactory.closeSession();			
+		}
+		return fundList;
+	}
+	public List<Fund> queryFundList(Timestamp crtDateTime) {
+
+		List<Fund> fundList=null;
+		Session session=HibernateSessionFactory.getSession();
+		try{		
+//		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");		
+	
+		DetachedCriteria  criteria =DetachedCriteria.forClass(Fund.class); 
+		
+
+		criteria.add(Restrictions.eq("fundCode","001232"));	
+		//criteria.add(Restrictions.eq("crtDateTime",crtDateTime));
+		criteria.add(Restrictions.gt("crtDateTime",crtDateTime));
+		
+		fundList =criteria .getExecutableCriteria(session).list();
 		
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -77,4 +104,5 @@ public class FundReadDao implements IFundReadDao {
 		//
 		return fd;
 	}
+
 }

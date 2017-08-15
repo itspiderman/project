@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.services.IFundRateService;
 import com.services.dao.IFundRateDao;
-import com.services.pojo.fund.FundRate;
+import com.services.pojo.other.FundRate;
 
 public class FundRateServiceSpring implements IFundRateService{
 	

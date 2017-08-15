@@ -10,9 +10,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-
     <session-factory>
-
         <!-- Database connection settings -->
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@127.0.0.1:1521:posdb</property>
@@ -33,12 +31,9 @@
 
         <!-- Drop and re-create the database schema on startup : create
         but usually, we setup it as : update, so hibernate will not create table during deployment -->
-        <property name="hbm2ddl.auto">update</property>
-
+        <property name="hbm2ddl.auto">update</property>    
         <!-- Names the annotated entity class -->
         <mapping resource="com/services/pojo/fund/Fund.hbm.xml"/>
         <mapping resource="com/services/pojo/fund/FundRateRpt.hbm.xml"/>
-
     </session-factory>
-
 </hibernate-configuration>

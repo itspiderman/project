@@ -1,4 +1,4 @@
-package com.services.pojo.fund;
+package com.services.pojo.other;
 
 public final class FundType {
 	final static char STOCK_FUND='1';

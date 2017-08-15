@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.services.imp.FundRateService;
-import com.services.pojo.fund.FundRate;
+import com.services.pojo.other.FundRate;
 
 public abstract class AFundSelenium implements IFundSelenium {
 	

@@ -5,10 +5,10 @@ import java.util.List;
 import com.services.dao.IFundReadDao;
 import com.services.dao.IFundRateStepDao;
 import com.services.dao.imp.FundReadDao;
-import com.services.dao.imp.FundRateStepDao;
 import com.services.pojo.fund.Fund;
-import com.services.pojo.fund.FundRate;
-import com.services.pojo.fund.FundRateStep;
+import com.services.pojo.other.FundRate;
+import com.services.pojo.other.FundRateStep;
+import com.services.dao.imp.FundRateStepDao;
 
 
 public class FundRateService {	

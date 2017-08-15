@@ -8,14 +8,14 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateSessionFactory {
-	private static SessionFactory sessionFactory = null;
+	private static SessionFactory sessionFactory = null;	
 	final static StandardServiceRegistry registry =new StandardServiceRegistryBuilder().configure().build();	
 	private static final ThreadLocal<Session> threadLocal=new ThreadLocal<Session>();
 
 	
 	static{
 		try{
-			sessionFactory=new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			sessionFactory=new MetadataSources(registry).buildMetadata().buildSessionFactory();			
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -35,7 +35,7 @@ public class HibernateSessionFactory {
 	}
 	private static void rebuildSessionFactory(){
 		try{
-			sessionFactory=new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			sessionFactory=new MetadataSources(registry).buildMetadata().buildSessionFactory();			
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}

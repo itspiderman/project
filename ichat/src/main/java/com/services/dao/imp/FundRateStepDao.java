@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.services.dao.IFundRateStepDao;
-import com.services.pojo.fund.FundRateStep;
+import com.services.pojo.other.FundRateStep;
 
 public class FundRateStepDao implements IFundRateStepDao {
 	

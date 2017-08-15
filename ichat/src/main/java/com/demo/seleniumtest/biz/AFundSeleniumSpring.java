@@ -71,102 +71,92 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 			String lst5yPct;
 			String sinceFoundPct;
 			Date lstUpdDate;
-			
-			int fm=flist.size();
+
+			int fm = flist.size();
 
 			System.out.println("Start fetch each fund");
 
 			while (fit.hasNext()) {
 				fund = (Fund) fit.next();
-				System.out.println("driver.get(fund.getFundUrl());");
+				System.out.println(fund.getFundCode()+","+fund.getFundName()+","+fund.getFundUrl());
 				driver.get(fund.getFundUrl());
-				System.out.println("before : " + theSixthValue);
-				try {
-					theSixthValue = driver.findElement(By.xpath("//div/ul[1]/li[7]")).getText();
-					System.out.println("after : " + theSixthValue);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				if (quartileRanking.equals(theSixthValue.trim())) {
-					System.out.print("set xpathrow=6, ");
-					xpathRow = 6;
-				} else {
-					System.out.print("set xpathrow=7, ");
-					xpathRow = 7;
-				}
-				//
-				System.out.println(fund.getFundCode() + " " + fund.getFundName() + ",fundtype " + fund.getFundTypecode()
-						+ " , 7, ");
-				System.out.println(theSixthValue);
-				//
-				sFundAmt = driver.findElement(By.xpath("//label[5]/span")).getText();
-				sFundAmt = sFundAmt.substring(0, sFundAmt.indexOf("元")+1);
-				System.out.print("资产规模：" + sFundAmt);
-				if (sFundAmt.equals("") || sFundAmt.indexOf(".") < 1) {
-					fundAmt = 0;
-				} else {
-					fundAmt = Float.parseFloat(sFundAmt.substring(0, sFundAmt.indexOf("元") - 1));
-				}
-				System.out.println(",float 资产规模：" + fundAmt);
-				//
-				curyearRate = driver.findElement(By.xpath("//div/ul[2]/li[7]")).getText();
-				System.out.println("curyearRate is " + curyearRate);
-				
-				lst1wRate = driver.findElement(By.xpath("//div/ul[3]/li[7]")).getText();
-				System.out.println("lst1wRate is " + lst1wRate);
-				lst1mRate = driver.findElement(By.xpath("//div/ul[4]/li[7]")).getText();
-				System.out.println("lst1mRate is " + lst1mRate);
-				lst3mRate = driver.findElement(By.xpath("//div/ul[5]/li[7]")).getText();
-				System.out.println("lst3mRate is " + lst3mRate);
-				lst6mRate = driver.findElement(By.xpath("//div/ul[6]/li[7]")).getText();
-				System.out.println("lst6mRate is " + lst6mRate);				
-				
-				lst1yRate = driver.findElement(By.xpath("//div/ul[7]/li[7]")).getText();
-				System.out.println("lst1yRate is " + lst1yRate);
-				lst2yRate = driver.findElement(By.xpath("//div/ul[8]/li[7]")).getText();
-				System.out.println("lst2yRate is " + lst2yRate);
-				lst3yRate = driver.findElement(By.xpath("//div/ul[9]/li[7]")).getText();
-				System.out.println("lst3yRate is " + lst3yRate);
-				lst5yRate = driver.findElement(By.xpath("//div/ul[10]/li[7]")).getText();
-				System.out.println("lst5yRate is " + lst5yRate);
-				sinceFoundRate = driver.findElement(By.xpath("//div/ul[11]/li[7]")).getText();
-				System.out.println("sinceFoundRate is " + sinceFoundRate);
-				// percentage
-				curyearPct = driver.findElement(By.xpath("//div/ul[2]/li[2]")).getText();
-				System.out.println("curyearPct is " + curyearPct);				
-				lst1wPct = driver.findElement(By.xpath("//div/ul[3]/li[2]")).getText();
-				System.out.println("lst1wPct is " + lst1wPct);
-				lst1mPct = driver.findElement(By.xpath("//div/ul[4]/li[2]")).getText();
-				System.out.println("lst1mPct is " + lst1mPct);
-				lst3mPct = driver.findElement(By.xpath("//div/ul[5]/li[2]")).getText();
-				System.out.println("lst3mPct is " + lst3mPct);
-				lst6mPct = driver.findElement(By.xpath("//div/ul[6]/li[2]")).getText();
-				System.out.println("lst6mPct is " + lst6mPct);				
-				lst1yPct = driver.findElement(By.xpath("//div/ul[7]/li[2]")).getText();
-				System.out.println("lst1yPct is " + lst1yPct);
-				lst2yPct = driver.findElement(By.xpath("//div/ul[8]/li[2]")).getText();
-				System.out.println("lst2yPct is " + lst2yPct);
-				lst3yPct = driver.findElement(By.xpath("//div/ul[9]/li[2]")).getText();
-				System.out.println("lst3yPct is " + lst3yPct);
-				lst5yPct = driver.findElement(By.xpath("//div/ul[10]/li[2]")).getText();
-				System.out.println("lst5yPct is " + lst5yPct);
-				sinceFoundPct = driver.findElement(By.xpath("//div/ul[11]/li[2]")).getText();
-				System.out.println("sinceFoundPct is " + sinceFoundPct);
 
-				String lstUpdDateStr = driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();				
-				if (lst1wRate.trim().equals("---") || lstUpdDateStr.trim().equals("")){
-					System.out.println("lstUpdDateStr is "+lstUpdDateStr+" ,continue");
+				try {
+					sFundAmt = driver.findElement(By.xpath("//label[5]/span")).getText();
+					sFundAmt = sFundAmt.substring(0, sFundAmt.indexOf("元") + 1).replace(",","");
+					System.out.print("资产规模：" + sFundAmt);
+					if (sFundAmt.equals("") || sFundAmt.indexOf(".") < 1) {
+						fundAmt = 0;
+					} else {
+						fundAmt = Float.parseFloat(sFundAmt.substring(0, sFundAmt.indexOf("元") - 1));
+					}
+					System.out.println(",float 资产规模：" + fundAmt);
+					//
+					curyearRate = driver.findElement(By.xpath("//div/ul[2]/li[7]")).getText();
+					System.out.println("curyearRate is " + curyearRate);
+
+					lst1wRate = driver.findElement(By.xpath("//div/ul[3]/li[7]")).getText();
+					System.out.println("lst1wRate is " + lst1wRate);
+					lst1mRate = driver.findElement(By.xpath("//div/ul[4]/li[7]")).getText();
+					System.out.println("lst1mRate is " + lst1mRate);
+					lst3mRate = driver.findElement(By.xpath("//div/ul[5]/li[7]")).getText();
+					System.out.println("lst3mRate is " + lst3mRate);
+					lst6mRate = driver.findElement(By.xpath("//div/ul[6]/li[7]")).getText();
+					System.out.println("lst6mRate is " + lst6mRate);
+
+					lst1yRate = driver.findElement(By.xpath("//div/ul[7]/li[7]")).getText();
+					System.out.println("lst1yRate is " + lst1yRate);
+					lst2yRate = driver.findElement(By.xpath("//div/ul[8]/li[7]")).getText();
+					System.out.println("lst2yRate is " + lst2yRate);
+					lst3yRate = driver.findElement(By.xpath("//div/ul[9]/li[7]")).getText();
+					System.out.println("lst3yRate is " + lst3yRate);
+					lst5yRate = driver.findElement(By.xpath("//div/ul[10]/li[7]")).getText();
+					System.out.println("lst5yRate is " + lst5yRate);
+					sinceFoundRate = driver.findElement(By.xpath("//div/ul[11]/li[7]")).getText();
+					System.out.println("sinceFoundRate is " + sinceFoundRate);
+					// percentage
+					curyearPct = driver.findElement(By.xpath("//div/ul[2]/li[2]")).getText();
+					System.out.println("curyearPct is " + curyearPct);
+					lst1wPct = driver.findElement(By.xpath("//div/ul[3]/li[2]")).getText();
+					System.out.println("lst1wPct is " + lst1wPct);
+					lst1mPct = driver.findElement(By.xpath("//div/ul[4]/li[2]")).getText();
+					System.out.println("lst1mPct is " + lst1mPct);
+					lst3mPct = driver.findElement(By.xpath("//div/ul[5]/li[2]")).getText();
+					System.out.println("lst3mPct is " + lst3mPct);
+					lst6mPct = driver.findElement(By.xpath("//div/ul[6]/li[2]")).getText();
+					System.out.println("lst6mPct is " + lst6mPct);
+					lst1yPct = driver.findElement(By.xpath("//div/ul[7]/li[2]")).getText();
+					System.out.println("lst1yPct is " + lst1yPct);
+					lst2yPct = driver.findElement(By.xpath("//div/ul[8]/li[2]")).getText();
+					System.out.println("lst2yPct is " + lst2yPct);
+					lst3yPct = driver.findElement(By.xpath("//div/ul[9]/li[2]")).getText();
+					System.out.println("lst3yPct is " + lst3yPct);
+					lst5yPct = driver.findElement(By.xpath("//div/ul[10]/li[2]")).getText();
+					System.out.println("lst5yPct is " + lst5yPct);
+					sinceFoundPct = driver.findElement(By.xpath("//div/ul[11]/li[2]")).getText();
+					System.out.println("sinceFoundPct is " + sinceFoundPct);
+
+					String lstUpdDateStr = driver.findElement(By.xpath("//div/div[3]/font[1]")).getText();
+					if (lst1wRate.trim().equals("---") || lstUpdDateStr.trim().equals("")) {
+						System.out.println("lstUpdDateStr is " + lstUpdDateStr + " ,continue");
+						continue;
+					}
+					try {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+						lstUpdDate = sdf.parse(lstUpdDateStr.substring(6));
+						System.out.println("sinceFoundPct is " + lstUpdDateStr);
+						frRpt.setLstUpdDate(lstUpdDate);
+					} catch (ParseException ex) {
+						System.out.println("data parse error. " + ex.getMessage());
+						continue;
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					Thread.sleep(2000);
 					continue;
 				}
-				try {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					lstUpdDate = sdf.parse(lstUpdDateStr.substring(6));
-					System.out.println("sinceFoundPct is " + lstUpdDateStr);
-					frRpt.setLstUpdDate(lstUpdDate);
-				} catch (ParseException ex) {
-					System.out.println("data parse error. "+ex.getMessage());
-					throw ex;
-				}				
+
 				frRpt.setFundCode(fund.getFundCode());
 				frRpt.setsFundAmt(sFundAmt);
 				frRpt.setFundAmt(fundAmt);
@@ -204,8 +194,8 @@ public abstract class AFundSeleniumSpring implements IFundSelenium {
 						e.printStackTrace();
 					}
 				}
-				//xpathRow = 6;
-				//if (thCount >= 5) 	break; // for debug
+				// xpathRow = 6;
+				// if (thCount >= 5) break; // for debug
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

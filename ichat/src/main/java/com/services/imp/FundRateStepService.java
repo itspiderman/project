@@ -5,7 +5,7 @@ import java.util.List;
 import com.services.IFundRateStepService;
 import com.services.dao.IFundRateStepDao;
 import com.services.dao.imp.FundRateStepDao;
-import com.services.pojo.fund.FundRateStep;
+import com.services.pojo.other.FundRateStep;
 
 public class FundRateStepService implements IFundRateStepService {
 	FundRateStep fundRateStep;
