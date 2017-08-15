@@ -1,0 +1,49 @@
+{
+   "name" : "homepage",
+   "url" : "http://fund.eastmoney.com/",
+   "funds" : [
+      {
+         "url" : "http://fund.eastmoney.com/001781.html",
+         "fundcode" : "001781",
+         "fundname" : "建信现代服务业股票",
+         "steps" : [
+            {
+               "controltype" : "button",
+               "action" : "click",
+               "value" : "NA"
+            },
+            [ "textbox", "input", "13536496649" ],
+            {
+               "controltype" : "button",
+               "action" : "click",
+               "value" : "NA"
+            },
+            {
+               "controltype" : "button",
+               "action" : "click",
+               "value" : "NA"
+            }
+         ]
+      },
+      {
+         "url" : "http://fund.eastmoney.com/001781.html",
+         "fundcode" : "001781",
+         "fundname" : "建信现代服务业股票",
+         "steps" : [
+            {
+               "controltype" : "button",
+               "action" : "click",
+               "value" : "NA"
+            },
+            {},
+            {},
+            {},
+            {
+               "url" : "http://www.baidu.com",
+               "fundCode" : "003001",
+               "fundName" : "华安策略"
+            }
+         ]
+      }
+   ]
+}

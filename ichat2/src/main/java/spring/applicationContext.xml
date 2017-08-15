@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="fundReadDao" class="com.services.dao.imp.FundReadDao" />
+	<bean id="fundWriteDao" class="com.services.dao.imp.FundWriteDao" />
+	<bean id="fundRateStepDao" class="com.services.dao.imp.FundRateStepDao" />
+	<bean id ="fundRateDao" class="com.services.dao.imp.FundRateDao">
+	    <property name="fundReadDao" ref="fundReadDao" />
+	    <property name="fundRateStepDao" ref="fundRateStepDao" />
+	</bean>	
+	<bean id="fundRateRptDao" class="com.services.dao.imp.FundRateRptDao" />
+    <bean id="fundService" class="com.services.imp.FundService">
+        <property name="fundReadDao" ref="fundReadDao" />
+        <property name="fundWriteDao" ref="fundWriteDao" />
+    </bean>
+    <bean id="fundRateService" class="com.services.imp.FundRateServiceSpring">
+		<property name="fundRateDao" ref="fundRateDao" />		
+    </bean>
+    <bean id="fundRateRptService" class="com.services.imp.FundRateRptService">
+		<property name="fundRateRptDao" ref="fundRateRptDao" />
+    </bean>
+    <bean id="fundServiceRunnable" class="com.services.imp.FundServiceRunnable">
+		<property name="fundWriteDao" ref="fundWriteDao"></property>
+    </bean> 
+	<bean id="aFundSelenium" class="com.demo.seleniumtest.biz.AFundSeleniumSpring" abstract="true">
+		<property name="fundService" ref="fundService" />
+		<property name="fundRateService" ref="fundRateService" />
+		<property name="fundRateRptService" ref="fundRateRptService" />
+	</bean>
+	<!-- even don't call this calss, but it will be loaded at the begining -->	
+	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />
+	<bean id="htmlUnitSeleniumSpring" class="com.demo.seleniumtest.biz.HtmlUnitSeleniumSpring" parent="aFundSelenium" />	
+</beans>

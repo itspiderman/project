@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-30 17:59:21 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.services.pojo.fund.FundRateRpt" table="FUNDRATERPT">
+        <id name="fundCode" type="java.lang.String">
+            <column name="FUNDCODE" />
+            <generator class="assigned" />
+        </id>
+        <property name="sFundAmt" type="java.lang.String" access="field">
+            <column name="SFUNDAMT" />
+        </property>
+        <property name="fundAmt" type="float">
+            <column name="FUNDAMT" />
+        </property>
+        <property name="lst1wRate" type="java.lang.String">
+            <column name="LST1WRATE" />
+        </property>
+        <property name="lst1mRate" type="java.lang.String">
+            <column name="LST1MRATE" />
+        </property>
+        <property name="lst3mRate" type="java.lang.String">
+            <column name="LST3MRATE" />
+        </property>
+        <property name="lst6mRate" type="java.lang.String">
+            <column name="LST6MRATE" />
+        </property>
+        <property name="curyearRate" type="java.lang.String">
+            <column name="CURYEARRATE" />
+        </property>
+        <property name="lst1yRate" type="java.lang.String">
+            <column name="LST1YRATE" />
+        </property>
+        <property name="lst2yRate" type="java.lang.String">
+            <column name="LST2YRATE" />
+        </property>
+        <property name="lst3yRate" type="java.lang.String">
+            <column name="LST3YRATE" />
+        </property>
+        <property name="lst5yRate" type="java.lang.String">
+            <column name="LST5YRATE" />
+        </property>
+        <property name="sinceFoundRate" type="java.lang.String">
+            <column name="SINCEFOUNDRATE" />
+        </property>
+        <property name="lst1wPct" type="java.lang.String">
+            <column name="LST1WPCT" />
+        </property>
+        <property name="lst1mPct" type="java.lang.String">
+            <column name="LST1MPCT" />
+        </property>
+        <property name="lst3mPct" type="java.lang.String">
+            <column name="LST3MPCT" />
+        </property>
+        <property name="lst6mPct" type="java.lang.String">
+            <column name="LST6MPCT" />
+        </property>
+        <property name="curyearPct" type="java.lang.String">
+            <column name="CURYEARPCT" />
+        </property>
+        <property name="lst1yPct" type="java.lang.String">
+            <column name="LST1YPCT" />
+        </property>
+        <property name="lst2yPct" type="java.lang.String">
+            <column name="LST2YPCT" />
+        </property>
+        <property name="lst3yPct" type="java.lang.String">
+            <column name="LST3YPCT" />
+        </property>
+        <property name="lst5yPct" type="java.lang.String">
+            <column name="LST5YPCT" />
+        </property>
+        <property name="sinceFoundPct" type="java.lang.String">
+            <column name="SINCEFOUNDPCT" />
+        </property>
+        <property name="lstUpdDate" type="java.util.Date">
+            <column name="LSTUPDDATE" />
+        </property>
+    </class>
+</hibernate-mapping>
