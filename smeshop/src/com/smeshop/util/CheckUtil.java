@@ -4,22 +4,22 @@ import java.security.MessageDigest;
 import java.util.Arrays;
 
 public class CheckUtil {
-	public static final String tooken = "smeshop123"; // 开发者自行定义Tooken
+	public static final String tooken = "smeshop123"; // Token, define by developer
 
 	public static boolean checkSignature(String signature, String timestamp, String nonce) {
-		// 1.定义数组存放tooken，timestamp,nonce
+		// 1.define array for tooken,timestamp,nonce
 		String[] arr = { tooken, timestamp, nonce };
-		// 2.对数组进行排序
+		// 2.Sort array
 		Arrays.sort(arr);
-		// 3.生成字符串
+		// 3.generate buffer string
 		StringBuffer sb = new StringBuffer();
 		for (String s : arr) {
 			sb.append(s);
 		}
 
-		// 4.sha1加密,网上均有现成代码
+		// 4.sha1 encrypt
 		String temp = getSha1(sb.toString());
-		// 5.将加密后的字符串，与微信传来的加密签名比较，返回结果
+		// 5. compare encrypted string with the encrypted signature sent by wx, and return. 
 		return temp.equals(signature);
 	}
 

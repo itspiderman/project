@@ -47,7 +47,7 @@ public class WeiXinServlet extends HttpServlet {
 		String echostr = request.getParameter("echostr");
 		PrintWriter out = response.getWriter();
 		if (CheckUtil.checkSignature(signature, timestamp, nonce)) {
-			// Èç¹ûÐ£Ñé³É¹¦£¬½«µÃµ½µÄËæ»ú×Ö·û´®Ô­Â··µ»Ø
+			// 如果校验成功，将得到的随机字符串原路返回
 			out.print(echostr);
 		}
 	}
