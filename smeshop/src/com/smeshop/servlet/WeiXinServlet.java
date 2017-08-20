@@ -39,7 +39,7 @@ public class WeiXinServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// http://localhost:8080/smeshop/servlet/WeiXinServlet?signature=kevin&timestamp=20170814&nonce=none&echostr=Y
+		// http://localhost:8080//smeshop/servlet/WeiXinServlet?signature=1daa271bfe29d324d18f4e7cb465452ae822f171&echostr=1943221816723597662&timestamp=1503223876&nonce=529781944
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
