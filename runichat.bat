@@ -1,1 +1,0 @@
-java -jar ichat/target/ichat.jar

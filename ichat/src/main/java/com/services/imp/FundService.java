@@ -125,7 +125,9 @@ public class FundService implements IFundService {
 			}else{
 				Sheet[] sheets=workbook.getSheets();
 				for(Sheet st:sheets){
-					uploadFundWorkSheet(workbook, st);
+					iReturn++;
+					System.out.println("start upload sheet"+iReturn+ " "+st.getName());
+					uploadFundWorkSheet(workbook, st);					
 				}
 			}	
 			iReturn=1;

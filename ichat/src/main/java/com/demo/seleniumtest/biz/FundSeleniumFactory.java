@@ -18,8 +18,8 @@ public class FundSeleniumFactory {
 						return (new FireFoxSelenium());			
 					case IE_BROWSER_NAME:
 						return (new IexplorerSelenium());
-					case CHROME_BROWSER_NAME:
-						return (new ChromeSelenium());
+//					case CHROME_BROWSER_NAME:
+//						return (new ChromeSelenium());
 					default:
 						new Exception("Browser name is not existing! or incorrect");
 					}
