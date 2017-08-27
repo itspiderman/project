@@ -3,13 +3,16 @@ package com.services.dao.imp;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
 
 import com.demo.util.HibernateSessionFactory;
 import com.services.dao.IFundReadDao;
@@ -103,6 +106,18 @@ public class FundReadDao implements IFundReadDao {
 		fd.setCrtDateTime(crtDateTime);
 		//
 		return fd;
+	}
+	public HashMap queryFund(){
+		HashMap<String, String> hm=new HashMap<String, String>(0);
+		Session session=HibernateSessionFactory.getSession();
+		String hql="from Fund";
+		//@SuppressWarnings("deprecation")
+		List<Fund> list =(List<Fund>) session.createQuery(hql).list();		
+		
+		for(Fund fund: list){
+			hm.put(fund.getFundCode(),fund.getFundName());
+		}		
+		return hm;		
 	}
 
 }

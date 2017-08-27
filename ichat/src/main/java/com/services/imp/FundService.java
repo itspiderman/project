@@ -1,6 +1,7 @@
 package com.services.imp;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +45,11 @@ public class FundService implements IFundService {
 		return fundReadDao.queryFundList();
 	}
 
+	public HashMap queryFund() {
+		HashMap hm = fundReadDao.queryFund();
+		return hm;
+	}
+
 	@Override
 	public int insertFund(Fund fund) {
 		return fundWriteDao.insertFund(fund);
@@ -54,84 +60,87 @@ public class FundService implements IFundService {
 		return fundWriteDao.insertFund(fundList);
 	}
 
-//	@Override
-//	public int uploadFund(String xlsFileName, String sheetName) {
-//		Workbook workbook = null;
-//		Sheet sheet = null;
-//		// column and row index start from 0;
-//		int rows = 0;
-//		int row = 1;
-//		Date sysDate = null;
-//
-//		try {
-//			workbook = Workbook.getWorkbook(new File(xlsFileName));
-//			sheet = workbook.getSheet(sheetName);
-//			// columns=sheet.getColumns();
-//			rows = sheet.getRows();
-//			while (row < rows) {
-//				synchronized (this) {
-//					Fund fund = new Fund();
-//					sysDate = new Date();
-//					fund.setFundCode(sheet.getCell(1, row).getContents().trim());
-//					fund.setFundName(sheet.getCell(2, row).getContents());
-//					fund.setFundUrl(sheet.getCell(3, row).getContents());
-//					fund.setFundTypecode(sheet.getCell(4, row).getContents().charAt(0));
-//					fund.setCrtDateTime(new Timestamp(sysDate.getTime()));
-//					if (fund.getFundCode() != "") {
-//						System.out.println("start row: " + row + "," + fund.getFundCode() + fund.getFundName()
-//								+ fund.getFundUrl());
-//						insertFundThread(fund);
-//					} else
-//						break;
-//				}
-//				// After handle 20 rows, make thread sleep for 5 seconds
-//				if ((row % 20) == 0) {
-//					try {
-//						System.out.println("After handle 20 rows, make thread sleep for 5 seconds.....");
-//						Thread.sleep(8000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//				row++;
-//				// for testing
-//				if (row > 2)
-//					break;
-//			}
-//		} catch (BiffException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			sheet = null;
-//			workbook.close();
-//		}
-//		// row--;
-//		return row;
-//	}
+	// @Override
+	// public int uploadFund(String xlsFileName, String sheetName) {
+	// Workbook workbook = null;
+	// Sheet sheet = null;
+	// // column and row index start from 0;
+	// int rows = 0;
+	// int row = 1;
+	// Date sysDate = null;
+	//
+	// try {
+	// workbook = Workbook.getWorkbook(new File(xlsFileName));
+	// sheet = workbook.getSheet(sheetName);
+	// // columns=sheet.getColumns();
+	// rows = sheet.getRows();
+	// while (row < rows) {
+	// synchronized (this) {
+	// Fund fund = new Fund();
+	// sysDate = new Date();
+	// fund.setFundCode(sheet.getCell(1, row).getContents().trim());
+	// fund.setFundName(sheet.getCell(2, row).getContents());
+	// fund.setFundUrl(sheet.getCell(3, row).getContents());
+	// fund.setFundTypecode(sheet.getCell(4, row).getContents().charAt(0));
+	// fund.setCrtDateTime(new Timestamp(sysDate.getTime()));
+	// if (fund.getFundCode() != "") {
+	// System.out.println("start row: " + row + "," + fund.getFundCode() +
+	// fund.getFundName()
+	// + fund.getFundUrl());
+	// insertFundThread(fund);
+	// } else
+	// break;
+	// }
+	// // After handle 20 rows, make thread sleep for 5 seconds
+	// if ((row % 20) == 0) {
+	// try {
+	// System.out.println("After handle 20 rows, make thread sleep for 5
+	// seconds.....");
+	// Thread.sleep(8000);
+	// } catch (InterruptedException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+	// row++;
+	// // for testing
+	// if (row > 2)
+	// break;
+	// }
+	// } catch (BiffException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// } finally {
+	// sheet = null;
+	// workbook.close();
+	// }
+	// // row--;
+	// return row;
+	// }
 	@Override
 	public int uploadFund(String xlsFileName, String sheetName) {
-		int iReturn=0;
+
+		HashMap<?, ?> fundHashMap = null;
+		int iReturn = 0;
 		Workbook workbook = null;
 		Sheet sheet = null;
+
+		fundHashMap = fundReadDao.queryFund();
+
 		try {
 			workbook = Workbook.getWorkbook(new File(xlsFileName));
-			if (sheetName!=""){
-				sheet = workbook.getSheet(sheetName);
-				uploadFundWorkSheet(workbook, sheet);
-			}else{
-				Sheet[] sheets=workbook.getSheets();
-				for(Sheet st:sheets){
-					iReturn++;
-					System.out.println("start upload sheet"+iReturn+ " "+st.getName());
-					uploadFundWorkSheet(workbook, st);					
-				}
-			}	
-			iReturn=1;
-			
+			Sheet[] sheets = workbook.getSheets();
+			for (Sheet st : sheets) {
+				iReturn++;
+				System.out.println("start upload sheet" + iReturn + " " + st.getName());
+				uploadFundWorkSheet(workbook, st, fundHashMap);
+			}
+
+			iReturn = 1;
+
 		} catch (BiffException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,11 +153,11 @@ public class FundService implements IFundService {
 		} finally {
 			sheet = null;
 			workbook.close();
-		}		
+		}
 		return iReturn;
 	}
 
-	public int uploadFundWorkSheet(Workbook workbook, Sheet sheet) throws Exception {
+	public int uploadFundWorkSheet(Workbook workbook, Sheet sheet, HashMap<?, ?> fundHashMap) throws Exception {
 		int rows = 0;
 		int row = 1;
 		Date sysDate = null;
@@ -164,27 +173,37 @@ public class FundService implements IFundService {
 				fund.setFundTypecode(sheet.getCell(4, row).getContents().charAt(0));
 				fund.setCrtDateTime(new Timestamp(sysDate.getTime()));
 				if (fund.getFundCode() != "") {
-					System.out.println(
-							"start row: " + row + "," + fund.getFundCode() + fund.getFundName() + fund.getFundUrl());
-					insertFundThread(fund);
+					if (!fundHashMap.containsKey(fund.getFundCode())) {
+						System.out.println("start row: " + row + "," + fund.getFundCode() + fund.getFundName()
+								+ fund.getFundUrl());
+						try{
+							insertFundThread(fund);
+						}catch(Exception e){
+							System.out.println(sheet.getName()+" expection issue!!!");
+							e.printStackTrace();
+						}
+						
+					}else{
+						System.out.println("start row: " + row + "," + fund.getFundCode()+" is existing");
+					}
 				} else
 					break;
-			}
-			// After handle 20 rows, make thread sleep for 5 seconds
-			if ((row % 20) == 0) {
-				try {
-					System.out.println("After handle 20 rows, make thread sleep for 5 seconds.....");
-					Thread.sleep(8000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			}			
 			row++;
+			
+			try{
+				if( (row%20)==0){
+					System.out.println("20 rows, sleep for 5 seconds");
+					Thread.sleep(5000);
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			
 			// for testing
 			//if (row > 2) break;
-		}
-		// row--;
+		}	
 		return row;
 	}
 
