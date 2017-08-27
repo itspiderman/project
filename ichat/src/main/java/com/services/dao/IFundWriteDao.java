@@ -8,6 +8,7 @@ public interface IFundWriteDao {
 	//write dao : insert,update,delete
 	// 1. insert
 	public int insertFund(Fund fund);
+	public int insertFund(Fund fund,int iType);
 	public int insertFund(List<Fund> ls);
 	//2. update
 	public int updateFund(String fundCode);

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-5-30 17:59:21 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.services.pojo.fund.FundRateRpt" table="FUNDRATERPT">
+    <class name="com.services.pojo.fund.FundRateRpt" table="tfundraterpt">
         <id name="fundCode" type="java.lang.String">
             <column name="FUNDCODE" />
             <generator class="assigned" />

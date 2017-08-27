@@ -3,9 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:lang="http://www.springframework.org/schema/lang"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd">        
+    <bean id="hibernateSessionFactory" class="com.demo.util.HibernateSessionFactory" />    
 	<bean id="fundReadDao" class="com.services.dao.imp.FundReadDao" />
-	<bean id="fundWriteDao" class="com.services.dao.imp.FundWriteDao" />
+	<bean id="fundWriteDao" class="com.services.dao.imp.FundWriteDao">
+	 <property name="hibernateSessionFactory" ref="hibernateSessionFactory" />
+	</bean>
 	<bean id="fundRateStepDao" class="com.services.dao.imp.FundRateStepDao" />
 	<bean id ="fundRateDao" class="com.services.dao.imp.FundRateDao">
 	    <property name="fundReadDao" ref="fundReadDao" />
@@ -30,6 +33,7 @@
 		<property name="fundRateService" ref="fundRateService" />
 		<property name="fundRateRptService" ref="fundRateRptService" />
 	</bean>
-	<!-- even don't call this calss, but it will be loaded at the begining -->	
-	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />	
+	<!-- even don't call this calss, but it will be loaded at the begining 
+	<bean id="fireFoxSelenium" class="com.demo.seleniumtest.biz.FireFoxSeleniumSpring" parent="aFundSelenium" />
+	-->		
 </beans>

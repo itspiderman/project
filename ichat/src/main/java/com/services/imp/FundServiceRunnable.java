@@ -21,7 +21,6 @@ public class FundServiceRunnable implements Runnable {
 //	FundWriteDao fundWriteDao=(FundWriteDao)SpringContextUtils.getBean("fundWriteDao");
 	
 	private void synRun(){
-		System.out.println("Start run thread for fund:"+fund.getFundCode()+"-"+fund.getFundName() );
 		fundWriteDao.insertFund(fund);
 	}
 	//injection
