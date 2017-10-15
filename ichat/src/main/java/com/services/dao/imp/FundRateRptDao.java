@@ -17,7 +17,7 @@ public class FundRateRptDao implements IFundRateRptDao {
 
 	@Override
 	public void insertFundRateRpt(FundRateRpt fundRateRpt) {		
-		System.out.println("insert one fundRateRpt: "+fundRateRpt.getFundCode());
+		//System.out.println("insert one fundRateRpt: "+fundRateRpt.getFundCode());
 		SessionFactory sessionFactory = null;
 		Session session=null;
 		final StandardServiceRegistry registry =new StandardServiceRegistryBuilder().configure().build();		

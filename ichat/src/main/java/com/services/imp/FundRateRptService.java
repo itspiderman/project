@@ -47,6 +47,4 @@ public class FundRateRptService implements IFundRateRptService {
 	public void setFundRateRptDao(IFundRateRptDao fundRateRptDao) {
 		this.fundRateRptDao = fundRateRptDao;
 	}
-	
-
 }

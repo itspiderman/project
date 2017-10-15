@@ -14,6 +14,11 @@ public class FundRateRptServiceRunnable implements Runnable {
 		th.start();	
 	}	
 	 */
+	String sCycleDate;	
+	public void setsCycleDate(String sCycleDate) {
+		this.sCycleDate = sCycleDate;
+	}
+
 	FundRateRpt fundRateRpt;	
 	public void setFundRateRpt(FundRateRpt fundRateRpt) {
 		this.fundRateRpt = fundRateRpt;

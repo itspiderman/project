@@ -71,6 +71,26 @@ public class FundReadDao implements IFundReadDao {
 		}
 		return fundList;
 	}
+	@Override
+	public List<Fund> queryFundList(String sCycleDate) {
+
+		List<Fund> fundList=null;
+		Session session=HibernateSessionFactory.getSession();
+		try{		
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String hql="from Fund a where not exists (select b.fundCode from FundRateRpt b where b.fundCode=a.fundCode and (b.lstUpdDate>?)) order by a.fundTypecode asc, a.fundCode asc";
+		Query query=session.createQuery(hql)
+				.setParameter(0,format.parse(sCycleDate));
+		fundList=query.list();		
+		
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally{
+			System.out.println("close session ..... ");			
+			HibernateSessionFactory.closeSession();			
+		}
+		return fundList;
+	}
 	public List<Fund> queryFundList(Timestamp crtDateTime) {
 
 		List<Fund> fundList=null;

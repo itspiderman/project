@@ -44,6 +44,10 @@ public class FundService implements IFundService {
 	public List<Fund> queryFundList() {
 		return fundReadDao.queryFundList();
 	}
+	@Override
+	public List<Fund> queryFundList(String sCycleDate) {
+		return fundReadDao.queryFundList(sCycleDate);
+	}
 
 	public HashMap queryFund() {
 		HashMap hm = fundReadDao.queryFund();
@@ -126,7 +130,7 @@ public class FundService implements IFundService {
 		HashMap<?, ?> fundHashMap = null;
 		int iReturn = 0;
 		Workbook workbook = null;
-		Sheet sheet = null;
+		//Sheet sheet = null;
 
 		fundHashMap = fundReadDao.queryFund();
 
@@ -136,14 +140,19 @@ public class FundService implements IFundService {
 			for (Sheet st : sheets) {
 				iReturn++;
 				System.out.println("start upload sheet" + iReturn + " " + st.getName());
+				try{
 				uploadFundWorkSheet(workbook, st, fundHashMap);
+				}catch(Exception ex){
+					ex.printStackTrace();
+					continue;
+				}
 			}
 
 			iReturn = 1;
 
 		} catch (BiffException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace();			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,7 +160,7 @@ public class FundService implements IFundService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			sheet = null;
+			//sheet = null;
 			workbook.close();
 		}
 		return iReturn;
@@ -181,16 +190,15 @@ public class FundService implements IFundService {
 						}catch(Exception e){
 							System.out.println(sheet.getName()+" expection issue!!!");
 							e.printStackTrace();
-						}
-						
+							continue;
+						}						
 					}else{
 						System.out.println("start row: " + row + "," + fund.getFundCode()+" is existing");
 					}
 				} else
 					break;
 			}			
-			row++;
-			
+			row++;			
 			try{
 				if( (row%20)==0){
 					System.out.println("20 rows, sleep for 5 seconds");
@@ -198,9 +206,7 @@ public class FundService implements IFundService {
 				}
 			}catch(Exception e){
 				e.printStackTrace();
-			}
-			
-			
+			}			
 			// for testing
 			//if (row > 2) break;
 		}	

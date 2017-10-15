@@ -1,12 +1,25 @@
 package com.demo.seleniumtest.biz;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class RunFundSeleniumSpring{	
 	
-	public static void main(String[] args){
+	public static void main(String[] args){		
+		String sCycleDate=null; 		 
+		if(args.length>0){
+			sCycleDate=args[0].trim();	
+			//sCycleDate=dtFormat.format(new Date(sCycleDate));
+		}else{	
+			SimpleDateFormat dtFormat=new SimpleDateFormat("yyyy-MM-dd");
+			sCycleDate=dtFormat.format(new Date());
+		}
+		System.out.println(sCycleDate);
 		RunFundSeleniumSpring runFundSelecnium=new RunFundSeleniumSpring();
-		runFundSelecnium.runSelenium();		
+		//runFundSelecnium.runSelenium();
+		runFundSelecnium.runSelenium(sCycleDate);
 	}
 
 	private void runSelenium(){
@@ -17,5 +30,12 @@ public class RunFundSeleniumSpring{
 		System.out.println(fundSelenium.getBrowserName());
 		fundSelenium.insertFundRateRpt();
 		context.close();
-	}	
+	}
+	private void runSelenium(String sCycleDate){		
+				ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("applicationContext.xml");
+				AFundSeleniumSpring fundSelenium=(FireFoxSeleniumSpring)context.getBean("fireFoxSelenium");
+				System.out.println(fundSelenium.getBrowserName());
+				fundSelenium.insertFundRateRpt(sCycleDate);
+				context.close();
+	}
 }
