@@ -4,8 +4,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class RunFundSeleniumSpring{	
 	
-	public static void main(String[] args){		
-		RunFundSeleniumSpring runFundSelecnium=new RunFundSeleniumSpring();		
+	public static void main(String[] args){
+		RunFundSeleniumSpring runFundSelecnium=new RunFundSeleniumSpring();
 		runFundSelecnium.runSelenium();		
 	}
 
