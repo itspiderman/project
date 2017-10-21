@@ -32,9 +32,9 @@ public class FundRateRptDao implements IFundRateRptDao {
 			sessionFactory.close();
 			System.out.println("End insert or update fund to DB for "+fundRateRpt.getFundCode());
 			
-		}catch(Exception e){
-			e.printStackTrace();
+		}catch(Exception e){			
 			StandardServiceRegistryBuilder.destroy(registry);
+			throw e;
 		}finally{
 			if(session!=null){
 				session.close();

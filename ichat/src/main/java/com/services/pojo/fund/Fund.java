@@ -8,6 +8,7 @@ public class Fund{
 	private String fundUrl;
 	private char fundTypecode;
 	private Timestamp crtDateTime;
+	private char rcdsts;
 	
 	public String getFundUrl() {
 		return fundUrl;
@@ -38,5 +39,11 @@ public class Fund{
 	}
 	public void setCrtDateTime(Timestamp crtDateTime) {
 		this.crtDateTime = crtDateTime;
-	}	
+	}
+	public char getRcdsts() {
+		return rcdsts;
+	}
+	public void setRcdsts(char rcdsts) {
+		this.rcdsts = rcdsts;
+	}
 }

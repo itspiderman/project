@@ -27,7 +27,7 @@ public class RunUploadFundSpring{
 		
 		String xlsFileName=IchatPropertiesUtil.getProperty("fundDataPath");
 		String sheetName="";		
-//		sheetName="stock1fundtest";
+		sheetName="stock1fundtest";
 //		sheetName="stock1fund";
 //		sheetName="hybrid2fund";
 //		sheetName="bons3fund";

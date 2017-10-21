@@ -9,5 +9,5 @@ public class FireFoxSeleniumSpring extends AFundSeleniumSpring  {
 		this.setBrowserName("FireFox");		
 		System.setProperty("webdriver.firefox.marionette", "C:\\Program Files\\Mozilla Firefox\\geckodriver.exe");		
 		super.setDriver(new FirefoxDriver());
-	}
+	}	
 }

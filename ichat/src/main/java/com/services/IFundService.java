@@ -8,7 +8,7 @@ public interface IFundService {
 	//call read dao
 	public Fund queryFundByFundCode(String fundCode);
 	public List<Fund> queryFundList();
-	public List<Fund> queryFundList(String sCycleDate);
+	public List<Fund> queryFundList(String sCycleDate) throws Exception;
 	//call write dao
 	public int insertFund(Fund fund);
 	public int insertFund(List<Fund> fundList);

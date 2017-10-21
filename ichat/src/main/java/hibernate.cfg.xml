@@ -20,19 +20,12 @@
 		-->
 		<!-- mysql -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://101.200.63.179:3306/posdb?useUnicode=true&amp;characterEncoding=UTF-8</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/posdb?useUnicode=true&amp;characterEncoding=UTF-8</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
 		<property name="connection.username">posausr</property>
-		<property name="connection.password">posausr</property>
-		<!-- 
-		<property name="connection.password">posa</property>
-		 -->
-		<property name="c3p0.min_size">5</property>
-		<property name="c3p0.max_size">30</property>
-		<property name="c3p0.time_out">1800</property>
-		<property name="c3p0.max_statement">50</property>
-
+		<property name="connection.password">posausr</property>		
+		
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 		<!-- Drop and re-create the database schema on startup : create but usually, 

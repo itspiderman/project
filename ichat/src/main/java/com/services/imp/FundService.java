@@ -44,8 +44,9 @@ public class FundService implements IFundService {
 	public List<Fund> queryFundList() {
 		return fundReadDao.queryFundList();
 	}
+
 	@Override
-	public List<Fund> queryFundList(String sCycleDate) {
+	public List<Fund> queryFundList(String sCycleDate) throws Exception {
 		return fundReadDao.queryFundList(sCycleDate);
 	}
 
@@ -130,7 +131,7 @@ public class FundService implements IFundService {
 		HashMap<?, ?> fundHashMap = null;
 		int iReturn = 0;
 		Workbook workbook = null;
-		//Sheet sheet = null;
+		// Sheet sheet = null;
 
 		fundHashMap = fundReadDao.queryFund();
 
@@ -139,10 +140,17 @@ public class FundService implements IFundService {
 			Sheet[] sheets = workbook.getSheets();
 			for (Sheet st : sheets) {
 				iReturn++;
-				System.out.println("start upload sheet" + iReturn + " " + st.getName());
-				try{
-				uploadFundWorkSheet(workbook, st, fundHashMap);
-				}catch(Exception ex){
+				try {
+					if (sheetName == null) {
+						System.out.println("start upload sheet" + iReturn + " " + st.getName());
+						uploadFundWorkSheet(workbook, st, fundHashMap);
+					} else {
+						if (sheetName.equals(st.getName())) {
+							System.out.println("start upload sheet" + iReturn + " " + st.getName());
+							uploadFundWorkSheet(workbook, st, fundHashMap);
+						}
+					}
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					continue;
 				}
@@ -152,7 +160,7 @@ public class FundService implements IFundService {
 
 		} catch (BiffException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();			
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,7 +168,7 @@ public class FundService implements IFundService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//sheet = null;
+			// sheet = null;
 			workbook.close();
 		}
 		return iReturn;
@@ -185,31 +193,39 @@ public class FundService implements IFundService {
 					if (!fundHashMap.containsKey(fund.getFundCode())) {
 						System.out.println("start row: " + row + "," + fund.getFundCode() + fund.getFundName()
 								+ fund.getFundUrl());
-						try{
+						try {
 							insertFundThread(fund);
-						}catch(Exception e){
-							System.out.println(sheet.getName()+" expection issue!!!");
+						} catch (Exception e) {
+							System.out.println(sheet.getName() + " expection issue!!!");
 							e.printStackTrace();
 							continue;
-						}						
-					}else{
-						System.out.println("start row: " + row + "," + fund.getFundCode()+" is existing");
+						}
+					} else {
+						System.out.println("start row: " + row + "," + fund.getFundCode() + " is existing");
 					}
 				} else
 					break;
-			}			
-			row++;			
-			try{
-				if( (row%20)==0){
-					System.out.println("20 rows, sleep for 5 seconds");
-					Thread.sleep(5000);
+			}
+			row++;
+			try {
+				if ((row % 200) == 0) {
+					System.out.println("200 rows, sleep for 60 seconds"); // Exception
+																			// in
+																			// thread
+																			// "Thread-2940"
+																			// java.lang.OutOfMemoryError:
+																			// GC
+																			// overhead
+																			// limit
+																			// exceeded
+					Thread.sleep(60000);
 				}
-			}catch(Exception e){
+			} catch (Exception e) {
 				e.printStackTrace();
-			}			
+			}
 			// for testing
-			//if (row > 2) break;
-		}	
+			// if (row > 200) break;
+		}
 		return row;
 	}
 
