@@ -1,6 +1,7 @@
 //https://www.cnblogs.com/ysocean/p/7666061.html
 //https://www.iteye.com/resource/gujinapenggu5-9683556
 //https://blog.csdn.net/qq_31967569/article/details/89677692
+//https://repo1.maven.org/maven2/javax/mail/javax.mail-api/1.6.0/javax.mail-api-1.6.0.jar
 
 package com.atool;
 
